@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, inject } from '@angular/core';
+import { Component, HostListener, OnDestroy, inject, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SnakeComponent implements OnDestroy {
   private router = inject(Router);
+  @ViewChild('terminalInputField') terminalInputField!: ElementRef<HTMLInputElement>;
 
   // Configuration
   gridSize = 20;
@@ -90,6 +91,7 @@ export class SnakeComponent implements OnDestroy {
 
     if (this.snake.some((segment) => segment.x === newHead.x && segment.y === newHead.y)) {
       this.gameOver();
+
       return;
     }
 
@@ -119,6 +121,9 @@ export class SnakeComponent implements OnDestroy {
     clearInterval(this.gameInterval);
     this.gameStarted = false;
     this.gameOverMessage = ` Game Over! Score: ${this.score}`;
+    setTimeout(() => {
+      this.terminalInputField?.nativeElement.focus();
+    }, 0);
   }
 
   @HostListener('window:keydown', ['$event'])
