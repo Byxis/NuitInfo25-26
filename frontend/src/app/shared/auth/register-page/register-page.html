@@ -1,0 +1,41 @@
+<div class="register-component" (click)="select()">
+  <p>Missing from list?</p>
+
+  @if (isSelected()) {
+    <div class="login-container" (click)="$event.stopPropagation()">
+
+
+      <form [formGroup]="registerForm" (submit)="submitRegistration()">
+        <p>Register</p>
+        <label>Username</label>
+        <input class="text-input" formControlName="username" />
+
+        <label>Password</label>
+        <input class="text-input" type="password" formControlName="password" />
+
+        <button class="submit-button" type="submit" [disabled]="registerForm.invalid">
+          Register
+        </button>
+      </form>
+
+    <form [formGroup]="loginForm" (submit)="submitLogin()">
+        <p>Login</p>
+        <label>Username</label>
+        <input class="text-input" formControlName="username" />
+
+        <label>Password</label>
+        <input class="text-input" type="password" formControlName="password" />
+
+        <button class="submit-button" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </button>
+    </form>
+
+
+    <button class="cancel-button" type="button" (click)="onCancel($event)">
+        Cancel
+    </button>
+
+    </div>
+  }
+</div>
