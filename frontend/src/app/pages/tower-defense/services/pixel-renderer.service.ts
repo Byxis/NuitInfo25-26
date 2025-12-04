@@ -40,7 +40,7 @@ export class PixelRendererService {
 
   private drawBackground(): void {
     if (!this.ctx || !this.canvas) return;
-    this.ctx.fillStyle = COLORS.BACKGROUND;
+    this.ctx.fillStyle = COLORS.BG;
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
@@ -48,7 +48,7 @@ export class PixelRendererService {
     if (!this.ctx) return;
     const { ROWS, COLS, CELL_SIZE } = GAME_CONFIG.GRID;
 
-    this.ctx.strokeStyle = COLORS.GRID;
+    this.ctx.strokeStyle = COLORS.GRAY;
     this.ctx.lineWidth = 1;
 
     for (let row = 0; row <= ROWS; row++) {
@@ -69,10 +69,10 @@ export class PixelRendererService {
   private drawPath(): void {
     if (!this.ctx) return;
 
-    this.ctx.strokeStyle = COLORS.PATH;
+    this.ctx.strokeStyle = COLORS.GRAY;
     this.ctx.lineWidth = 40;
-    this.ctx.lineCap = 'round';
-    this.ctx.lineJoin = 'round';
+    this.ctx.lineCap = 'square';
+    this.ctx.lineJoin = 'miter';
 
     this.ctx.beginPath();
     this.ctx.moveTo(ENEMY_PATH[0].x, ENEMY_PATH[0].y);
@@ -102,12 +102,12 @@ export class PixelRendererService {
     this.ctx.fillRect(x, y, size, size);
 
     // Draw border
-    this.ctx.strokeStyle = COLORS.TEXT_PRIMARY;
+    this.ctx.strokeStyle = COLORS.CYAN;
     this.ctx.lineWidth = 2;
     this.ctx.strokeRect(x, y, size, size);
 
     // Draw icon (simple pixel art)
-    this.ctx.fillStyle = COLORS.TEXT_PRIMARY;
+    this.ctx.fillStyle = COLORS.BG;
     this.drawDefenseIcon(defense.type, x + size / 2, y + size / 2);
   }
 
@@ -150,15 +150,15 @@ export class PixelRendererService {
   private getDefenseColor(type: DefenseType): string {
     switch (type) {
       case DefenseType.PC_LINUX:
-        return COLORS.LINUX_BLUE;
+        return COLORS.FG; // Vert terminal
       case DefenseType.PC_RECONDITIONED:
-        return COLORS.NIRD_GREEN;
+        return COLORS.CYAN;
       case DefenseType.LOCAL_SERVER:
-        return '#8b5cf6';
+        return COLORS.MAGENTA;
       case DefenseType.ECO_DELEGATE:
-        return '#10b981';
+        return COLORS.YELLOW;
       default:
-        return COLORS.UI_BORDER;
+        return COLORS.FG;
     }
   }
 
@@ -184,7 +184,7 @@ export class PixelRendererService {
     this.ctx.fillRect(x, y, size, size);
 
     // Draw border
-    this.ctx.strokeStyle = COLORS.DANGER_RED;
+    this.ctx.strokeStyle = COLORS.WHITE;
     this.ctx.lineWidth = 2;
     this.ctx.strokeRect(x, y, size, size);
 
@@ -192,7 +192,7 @@ export class PixelRendererService {
     this.drawHealthBar(enemy.position.x, enemy.position.y - size / 2 - 8, size, enemy.health, enemy.maxHealth);
 
     // Draw enemy icon
-    this.ctx.fillStyle = COLORS.TEXT_PRIMARY;
+    this.ctx.fillStyle = COLORS.BG;
     this.drawEnemyIcon(enemy.type, enemy.position.x, enemy.position.y, size);
   }
 
@@ -244,15 +244,15 @@ export class PixelRendererService {
   private getEnemyColor(type: EnemyType): string {
     switch (type) {
       case EnemyType.GOLIATH_BIGTECH:
-        return '#7c3aed';
+        return '#ff00ff'; // Magenta vif
       case EnemyType.ANNUAL_LICENSE:
       case EnemyType.CLOUD_SUBSCRIPTION:
-        return '#f59e0b';
+        return '#ffff00'; // Jaune vif
       case EnemyType.CLOSED_ECOSYSTEM:
       case EnemyType.VENDOR_LOCKIN:
-        return '#dc2626';
+        return '#ff0000'; // Rouge vif
       default:
-        return '#6b7280';
+        return COLORS.GRAY;
     }
   }
 
@@ -263,12 +263,11 @@ export class PixelRendererService {
     const barHeight = 4;
 
     // Background
-    this.ctx.fillStyle = COLORS.UI_BG;
+    this.ctx.fillStyle = COLORS.GRAY;
     this.ctx.fillRect(x - width / 2, y, width, barHeight);
 
-    // Health
-    const healthColor = healthPercentage > 0.5 ? COLORS.NIRD_GREEN : healthPercentage > 0.25 ? COLORS.WARNING_YELLOW : COLORS.DANGER_RED;
-    this.ctx.fillStyle = healthColor;
+    // Health (vert phosphore)
+    this.ctx.fillStyle = COLORS.FG;
     this.ctx.fillRect(x - width / 2, y, width * healthPercentage, barHeight);
   }
 
@@ -276,10 +275,14 @@ export class PixelRendererService {
     if (!this.ctx) return;
 
     projectiles.forEach((projectile) => {
-      this.ctx!.fillStyle = projectile.areaEffect ? COLORS.WARNING_YELLOW : COLORS.LINUX_BLUE;
-      this.ctx!.beginPath();
-      this.ctx!.arc(projectile.position.x, projectile.position.y, projectile.areaEffect ? 6 : 4, 0, Math.PI * 2);
-      this.ctx!.fill();
+      // Projectiles en cyan vif
+      this.ctx!.fillStyle = COLORS.CYAN;
+      this.ctx!.fillRect(
+        projectile.position.x - 3, 
+        projectile.position.y - 3, 
+        projectile.areaEffect ? 6 : 4, 
+        projectile.areaEffect ? 6 : 4
+      );
     });
   }
 
@@ -296,11 +299,12 @@ export class PixelRendererService {
     const x = gridCol * GAME_CONFIG.GRID.CELL_SIZE;
     const y = gridRow * GAME_CONFIG.GRID.CELL_SIZE;
 
-    this.ctx.fillStyle = canPlace ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)';
+    // Cyan pour placement valide, gris pour invalide
+    this.ctx.fillStyle = canPlace ? 'rgba(0, 255, 255, 0.2)' : 'rgba(128, 128, 128, 0.3)';
     this.ctx.fillRect(x, y, GAME_CONFIG.GRID.CELL_SIZE, GAME_CONFIG.GRID.CELL_SIZE);
 
-    this.ctx.strokeStyle = canPlace ? COLORS.NIRD_GREEN : COLORS.DANGER_RED;
-    this.ctx.lineWidth = 2;
+    this.ctx.strokeStyle = canPlace ? COLORS.CYAN : COLORS.GRAY;
+    this.ctx.lineWidth = 3;
     this.ctx.strokeRect(x, y, GAME_CONFIG.GRID.CELL_SIZE, GAME_CONFIG.GRID.CELL_SIZE);
   }
 }

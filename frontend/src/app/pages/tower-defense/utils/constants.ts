@@ -28,20 +28,20 @@ export const WAVES: Wave[] = [
   {
     number: 2,
     enemies: [
-      { type: EnemyType.WINDOWS_EOL, count: 4, delay: 800 },
-      { type: EnemyType.FORCED_UPDATE, count: 3, delay: 1000 },
-      { type: EnemyType.ANNUAL_LICENSE, count: 3, delay: 1200 },
-      { type: EnemyType.CLOUD_SUBSCRIPTION, count: 2, delay: 1500 },
+      { type: EnemyType.WINDOWS_EOL, count: 3, delay: 800 },
+      { type: EnemyType.FORCED_UPDATE, count: 2, delay: 1000 },
+      { type: EnemyType.ANNUAL_LICENSE, count: 2, delay: 1200 },
+      { type: EnemyType.CLOUD_SUBSCRIPTION, count: 1, delay: 1500 },
     ],
   },
   {
     number: 3,
     enemies: [
-      { type: EnemyType.CLOSED_ECOSYSTEM, count: 2, delay: 800 },
-      { type: EnemyType.VENDOR_LOCKIN, count: 2, delay: 1000 },
-      { type: EnemyType.ANNUAL_LICENSE, count: 4, delay: 600 },
+      { type: EnemyType.CLOSED_ECOSYSTEM, count: 1, delay: 800 },
+      { type: EnemyType.VENDOR_LOCKIN, count: 1, delay: 1000 },
+      { type: EnemyType.ANNUAL_LICENSE, count: 2, delay: 600 },
       { type: EnemyType.GOLIATH_BIGTECH, count: 1, delay: 2000 },
-      { type: EnemyType.FORCED_UPDATE, count: 5, delay: 500 },
+      { type: EnemyType.FORCED_UPDATE, count: 2, delay: 500 },
     ],
   },
 ];
@@ -90,18 +90,15 @@ export function isPathTile(row: number, col: number): boolean {
   return PATH_TILES.some(tile => tile.row === row && tile.col === col);
 }
 
+// Palette rétro terminal ASCII / CRT
 export const COLORS = {
-  BACKGROUND: '#1a1a2e',
-  GRID: '#16213e',
-  PATH: '#0f3460',
-  UI_BG: '#0f1419',
-  UI_BORDER: '#2a4a6a',
-  TEXT_PRIMARY: '#eaeaea',
-  TEXT_SECONDARY: '#94a3b8',
-  NIRD_GREEN: '#10b981',
-  DANGER_RED: '#ef4444',
-  WARNING_YELLOW: '#fbbf24',
-  LINUX_BLUE: '#3b82f6',
+  BG: '#000000',           // Noir fond
+  FG: '#00ff00',           // Vert phosphore terminal
+  CYAN: '#00ffff',         // Cyan vif
+  MAGENTA: '#ff00ff',      // Magenta
+  YELLOW: '#ffff00',       // Jaune
+  WHITE: '#ffffff',        // Blanc
+  GRAY: '#808080',         // Gris
 };
 
 export const DEFENSE_DESCRIPTIONS = {

@@ -11,19 +11,22 @@
     </p>
   </header>
 
-  <div class="game-layout" *ngIf="gameState().status !== 'MENU'">
-    <div class="left-panel">
-      <app-defense-selector />
-    </div>
+  @if (gameState().status !== 'MENU') {
+    <div class="game-layout">
+      <div class="left-panel">
+        <app-defense-selector />
+      </div>
 
-    <div class="center-panel">
-      <app-game-ui />
-      <app-game-canvas />
+      <div class="center-panel">
+        <app-game-ui />
+        <app-game-canvas />
+      </div>
     </div>
-  </div>
+  }
 
-  <div class="menu-screen" *ngIf="gameState().status === 'MENU'">
-    <div class="menu-content">
+  @if (gameState().status === 'MENU') {
+    <div class="menu-screen">
+      <div class="menu-content">
       <div class="logo">🐧</div>
       <h2 class="menu-title">Bienvenue dans la Résistance NIRD !</h2>
       <p class="menu-description">
@@ -78,8 +81,9 @@
           📚 En savoir plus sur NIRD →
         </a>
       </div>
+      </div>
     </div>
-  </div>
+  }
 
   <app-victory-screen />
 </div>
