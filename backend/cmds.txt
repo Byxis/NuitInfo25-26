@@ -1,0 +1,12 @@
+POWERSHELL 7 : ($(@{login='LeZ';password='xyz'} | ConvertTo-Json -Compress))
+
+
+curl.exe --header "Content-Type: application/json" --request POST --data "@data.json" https://localhost:4000/api/users -k
+curl.exe --header "Content-Type: application/json" --request POST --data ($(@{login='LeZ';password='xyz'} | ConvertTo-Json -Compress)) https://localhost:4000/api/users -k
+
+curl.exe -i --cacert "..\certs\localhost.pem" https://localhost:4000/api/auth/login -H "Content-Type: application/json" --data "@data.json" -c "cookies.txt" -k
+curl.exe -i --cacert "..\certs\localhost.pem" https://localhost:4000/api/auth/login -H "Content-Type: application/json" --data ($(@{login='admin';password='admin'} | ConvertTo-Json -Compress)) -c "cookies.txt"
+
+curl.exe --cacert ../certs/localhost.pem https://localhost:4000/api/users -b cookies.txt -k
+
+curl.exe --cacert ../certs/localhost.pem https://localhost:4000/api/admin -b cookies.txt -k
