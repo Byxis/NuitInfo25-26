@@ -94,6 +94,8 @@ export class GameCanvasComponent implements AfterViewInit, OnDestroy {
 
   private canPlaceDefense(col: number, row: number): boolean {
     const state = this.gameEngine.gameState();
-    return !state.defenses.some((d: Defense) => d.gridPosition.col === col && d.gridPosition.row === row);
+    const occupied = state.defenses.some((d: Defense) => d.gridPosition.col === col && d.gridPosition.row === row);
+    const onPath = this.gameEngine.isOnPath(row, col);
+    return !occupied && !onPath;
   }
 }

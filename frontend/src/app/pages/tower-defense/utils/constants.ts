@@ -46,26 +46,44 @@ export const WAVES: Wave[] = [
   },
 ];
 
-export const ENEMY_PATH = [
-  { x: -50, y: 192 },
-  { x: 100, y: 192 },
-  { x: 100, y: 96 },
-  { x: 300, y: 96 },
-  { x: 300, y: 288 },
-  { x: 500, y: 288 },
-  { x: 500, y: 192 },
-  { x: 700, y: 192 },
+// Définition du chemin en coordonnées grille (row, col)
+const PATH_WAYPOINTS = [
+  { row: 3, col: -1 },    // Hors écran gauche
+  { row: 3, col: 0 },
+  { row: 3, col: 1 },
+  { row: 2, col: 1 },     // Virage
+  { row: 1, col: 1 },
+  { row: 1, col: 2 },
+  { row: 1, col: 3 },
+  { row: 1, col: 4 },
+  { row: 2, col: 4 },     // Virage
+  { row: 3, col: 4 },
+  { row: 4, col: 4 },
+  { row: 4, col: 5 },
+  { row: 4, col: 6 },
+  { row: 4, col: 7 },
+  { row: 3, col: 7 },     // Virage
+  { row: 2, col: 7 },
+  { row: 2, col: 8 },
+  { row: 2, col: 9 },
+  { row: 2, col: 11 },    // Sortie hors écran
 ];
+
+// Conversion dynamique en coordonnées pixel (centre des tuiles)
+export const ENEMY_PATH = PATH_WAYPOINTS.map(wp => ({
+  x: wp.col * GAME_CONFIG.GRID.CELL_SIZE + GAME_CONFIG.GRID.CELL_SIZE / 2,
+  y: wp.row * GAME_CONFIG.GRID.CELL_SIZE + GAME_CONFIG.GRID.CELL_SIZE / 2,
+}));
 
 // Tuiles du chemin (en coordonnées grille row, col) - défenses interdites ici
 export const PATH_TILES = [
   { row: 3, col: 0 }, { row: 3, col: 1 }, // Début horizontal
-  { row: 1, col: 1 }, { row: 2, col: 1 }, { row: 3, col: 1 }, // Vertical vers le haut
-  { row: 1, col: 2 }, { row: 1, col: 3 }, { row: 1, col: 4 }, // Horizontal milieu
+  { row: 2, col: 1 }, { row: 1, col: 1 }, // Vertical vers le haut
+  { row: 1, col: 2 }, { row: 1, col: 3 }, { row: 1, col: 4 }, // Horizontal haut
   { row: 2, col: 4 }, { row: 3, col: 4 }, { row: 4, col: 4 }, // Vertical vers le bas
   { row: 4, col: 5 }, { row: 4, col: 6 }, { row: 4, col: 7 }, // Horizontal bas
   { row: 3, col: 7 }, { row: 2, col: 7 }, // Vertical vers milieu
-  { row: 3, col: 8 }, { row: 3, col: 9 }, { row: 3, col: 10 }, // Fin horizontal
+  { row: 2, col: 8 }, { row: 2, col: 9 }, // Fin horizontal
 ];
 
 export function isPathTile(row: number, col: number): boolean {

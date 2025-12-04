@@ -16,7 +16,7 @@ export class GameEngineService {
   private enemySpawnQueue: { type: EnemyType; spawnTime: number }[] = [];
   private waveStartTime = 0;
   private currentComboTimer = 0;
-  private readonly COMBO_TIMEOUT = 1000; // 1 second
+  private readonly COMBO_TIMEOUT = 500; // 0.5 second
 
   getInitialState(): GameState {
     return {
@@ -72,6 +72,10 @@ export class GameEngineService {
       selectedDefenseType: type,
       canPlaceDefense: type !== null && state.stats.nirdPoints >= DEFENSE_CONFIGS[type].cost,
     }));
+  }
+
+  isOnPath(row: number, col: number): boolean {
+    return isPathTile(row, col);
   }
 
   placeDefense(gridPosition: GridPosition): boolean {
