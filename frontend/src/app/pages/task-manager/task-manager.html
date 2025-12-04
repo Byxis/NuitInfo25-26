@@ -1,0 +1,76 @@
+<div class="task-manager" tabindex="0" (keydown)="onKeyDown($event)">
+  <div class="tabs">
+    <div
+      class="tab"
+      [class.active]="selectedTab() === 'processus'"
+      (click)="selectedTab.set('processus')"
+    >
+      Processus
+    </div>
+    <div class="tab disabled">Performance</div>
+    <div class="tab disabled">Historique des applications</div>
+    <div class="tab disabled">Démarrage</div>
+    <div class="tab disabled">Utilisateurs</div>
+    <div class="tab disabled">Détails</div>
+    <div class="tab disabled">Services</div>
+  </div>
+
+  <div class="content" *ngIf="selectedTab() === 'processus'">
+    <div class="global-stats">
+      <div class="stat-item">
+        <span class="stat-label">Processeur</span>
+        <span class="stat-value" [class]="getSaturationClass(globalCpu())">{{
+          formatPercentage(globalCpu())
+        }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Mémoire</span>
+        <span class="stat-value" [class]="getSaturationClass(globalMemory() / 10)">{{
+          formatPercentage(globalMemory() / 10)
+        }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Disque</span>
+        <span class="stat-value" [class]="getSaturationClass(globalDisk() * 10)">{{
+          formatPercentage(globalDisk() * 10)
+        }}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Réseau</span>
+        <span class="stat-value" [class]="getSaturationClass(globalNetwork())">{{
+          formatPercentage(globalNetwork())
+        }}</span>
+      </div>
+    </div>
+
+    <div class="process-table">
+      <div class="table-header">
+        <div class="col col-name">Nom</div>
+        <div class="col col-status">Statut</div>
+        <div class="col col-cpu">Processeur</div>
+        <div class="col col-memory">Mémoire</div>
+        <div class="col col-disk">Disque</div>
+        <div class="col col-network">Réseau</div>
+      </div>
+      <div class="table-body">
+        <app-task
+          *ngFor="let process of processes()"
+          [process]="process"
+          [isSelected]="isProcessSelected(process)"
+          (taskSelected)="onTaskSelected($event)"
+        ></app-task>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer" *ngIf="selectedTab() === 'processus'">
+    <span
+      class="status-message"
+      [class.error]="statusType() === 'error'"
+      [class.success]="statusType() === 'success'"
+    >
+      {{ statusMessage() }}
+    </span>
+    <button class="footer-btn" (click)="endTask()">Fin de tâche</button>
+  </div>
+</div>

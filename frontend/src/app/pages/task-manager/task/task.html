@@ -1,0 +1,18 @@
+<div
+  class="table-row"
+  [class.highlighted]="process().cpu > 5"
+  [class.selected]="isSelected()"
+  (click)="onSelectTask()"
+>
+  <div class="col col-name">
+    <span class="process-icon">▶</span>
+    {{ process().name }}
+  </div>
+  <div class="col col-status"></div>
+  <div class="col col-cpu" [class.warning]="process().cpu > 10">
+    {{ formatPercentage(process().cpu) }}
+  </div>
+  <div class="col col-memory">{{ formatMemory(process().memory) }}</div>
+  <div class="col col-disk">{{ formatSpeed(process().disk) }}</div>
+  <div class="col col-network">{{ formatSpeed(process().network) }}</div>
+</div>
