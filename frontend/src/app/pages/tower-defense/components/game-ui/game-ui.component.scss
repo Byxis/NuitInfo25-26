@@ -1,0 +1,61 @@
+.stats-bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #0f1419;
+  border: 2px solid #2a4a6a;
+  flex-wrap: wrap;
+}
+
+.stat {
+  padding: 0.5rem;
+  background: #1a1a2e;
+  border: 2px solid #2a4a6a;
+  text-align: center;
+  min-width: 70px;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #10b981;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: 2px solid;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #10b981;
+  color: #0f1419;
+  border-color: #059669;
+
+  &:hover {
+    background: #059669;
+  }
+}
+
+.btn-secondary {
+  background: #3b82f6;
+  color: white;
+  border-color: #2563eb;
+
+  &:hover {
+    background: #2563eb;
+  }
+}

@@ -1,0 +1,121 @@
+<div class="victory-screen" *ngIf="gameState().status === 'VICTORY' || gameState().status === 'DEFEAT'">
+  <div class="overlay"></div>
+  <div class="modal">
+    <div class="header" [class.victory]="gameState().status === 'VICTORY'" [class.defeat]="gameState().status === 'DEFEAT'">
+      <h1 class="title">{{ gameState().status === 'VICTORY' ? '🎉 VICTOIRE !' : '💀 DÉFAITE' }}</h1>
+      <p class="subtitle" *ngIf="gameState().status === 'VICTORY'">
+        Le Village NIRD résiste aux BigTech ! 🐧
+      </p>
+      <p class="subtitle" *ngIf="gameState().status === 'DEFEAT'">
+        Les BigTech ont pris le contrôle... Pour l'instant !
+      </p>
+    </div>
+
+    <div class="stats-container">
+      <h2 class="section-title">📊 Statistiques de la Résistance</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ formatCurrency(gameState().stats.budgetSaved) }}</div>
+            <div class="stat-label">Budget économisé</div>
+            <div class="stat-description">Licences BigTech évitées</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🌱</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ gameState().stats.co2Saved.toFixed(2) }} tonnes</div>
+            <div class="stat-label">CO2 économisé</div>
+            <div class="stat-description">≈ {{ (gameState().stats.co2Saved * 12).toFixed(0) }} arbres plantés</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">♻️</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ gameState().stats.pcReconditioned }}</div>
+            <div class="stat-label">PC reconditionnés</div>
+            <div class="stat-description">Sauvés de l'obsolescence</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ accuracyPercent }}%</div>
+            <div class="stat-label">Précision</div>
+            <div class="stat-description">{{ gameState().stats.successfulShots }}/{{ gameState().stats.totalShots }} tirs réussis</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">💀</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ gameState().stats.enemiesKilled }}</div>
+            <div class="stat-label">Menaces neutralisées</div>
+            <div class="stat-description">BigTech vaincues</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ gameState().stats.maxCombo }}x</div>
+            <div class="stat-label">Meilleur combo</div>
+            <div class="stat-description">Tirs consécutifs</div>
+          </div>
+        </div>
+
+        <div class="stat-card stat-highlight">
+          <div class="stat-icon">🏛️</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ gameState().stats.autonomyGained }}%</div>
+            <div class="stat-label">Autonomie numérique</div>
+            <div class="stat-description">Indépendance des BigTech</div>
+          </div>
+        </div>
+
+        <div class="stat-card stat-highlight">
+          <div class="stat-icon">{{ getRatingIcon() }}</div>
+          <div class="stat-content">
+            <div class="stat-value">{{ finalScore }}</div>
+            <div class="stat-label">Score final</div>
+            <div class="stat-description">Note: {{ getRatingText() }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="achievements" *ngIf="achievements.length > 0">
+        <h3 class="achievements-title">🏆 Succès débloqués</h3>
+        <div class="achievements-list">
+          <div class="achievement" *ngFor="let achievement of achievements">
+            {{ achievement }}
+          </div>
+        </div>
+      </div>
+
+      <div class="message">
+        <p *ngIf="gameState().status === 'VICTORY'">
+          Bravo ! Votre établissement a su résister à la pression des BigTech et adopter un numérique 
+          <strong>Inclusif, Responsable et Durable</strong>. C'est exactement la vision de la démarche NIRD !
+        </p>
+        <p *ngIf="gameState().status === 'DEFEAT'">
+          Ne baissez pas les bras ! La résistance numérique est un combat continu. 
+          Rejoignez la communauté NIRD pour partager vos expériences et apprendre des autres établissements.
+        </p>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" (click)="restart()">
+          🔄 Rejouer
+        </button>
+        <button class="btn btn-secondary" (click)="learnMore()">
+          📚 En savoir plus sur NIRD
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

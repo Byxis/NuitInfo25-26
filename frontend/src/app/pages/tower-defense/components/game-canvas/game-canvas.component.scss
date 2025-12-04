@@ -1,0 +1,10 @@
+.canvas-container {
+  background: #0f1419;
+  border: 2px solid #2a4a6a;
+}
+
+canvas {
+  display: block;
+  cursor: crosshair;
+  image-rendering: pixelated;
+}
