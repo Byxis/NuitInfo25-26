@@ -37,19 +37,19 @@ export const DEFENSE_CONFIGS: Record<DefenseType, DefenseStats> = {
     damage: 25,
     range: 100,
     fireRate: 1.2,
-    cost: 100,
+    cost: 120,
     areaEffect: true,
   },
   [DefenseType.LOCAL_SERVER]: {
     damage: 40,
     range: 150,
     fireRate: 0.8,
-    cost: 150,
+    cost: 200,
   },
   [DefenseType.ECO_DELEGATE]: {
     damage: 10,
     range: 80,
     fireRate: 2.0,
-    cost: 75,
+    cost: 90,
   },
 };

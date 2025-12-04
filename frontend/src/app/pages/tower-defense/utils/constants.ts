@@ -93,12 +93,12 @@ export function isPathTile(row: number, col: number): boolean {
 // Palette rétro terminal ASCII / CRT
 export const COLORS = {
   BG: '#000000',           // Noir fond
-  FG: '#00ff00',           // Vert phosphore terminal
-  CYAN: '#00ffff',         // Cyan vif
+  FG: '#1e3a8a',           // Bleu foncé rétro
+  CYAN: '#60a5fa',         // Bleu clair rétro
   MAGENTA: '#ff00ff',      // Magenta
   YELLOW: '#ffff00',       // Jaune
   WHITE: '#ffffff',        // Blanc
-  GRAY: '#808080',         // Gris
+  GRAY: '#4b5563',         // Gris
 };
 
 export const DEFENSE_DESCRIPTIONS = {

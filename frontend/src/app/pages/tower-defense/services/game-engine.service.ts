@@ -49,7 +49,7 @@ export class GameEngineService {
       ...this.getInitialState(),
       status: GameStatus.PLAYING,
     }));
-    this.startWave(1);
+    setTimeout(() => this.startWave(1), 8000); // 8 secondes avant la vague 1
     this.startGameLoop();
   }
 
@@ -211,7 +211,7 @@ export class GameEngineService {
 
         const nextPoint = ENEMY_PATH[enemy.pathIndex + 1];
         if (!nextPoint) {
-          // Enemy reached the end
+          // Enemy reached the end - lose a life and mark as dead
           this.gameState.update((s) => ({
             ...s,
             stats: {
@@ -219,7 +219,7 @@ export class GameEngineService {
               lives: Math.max(0, s.stats.lives - enemy.stats.damage),
             },
           }));
-          return { ...enemy, isDead: true };
+          return { ...enemy, isDead: true, health: 0 };
         }
 
         const dx = nextPoint.x - enemy.position.x;
@@ -241,7 +241,7 @@ export class GameEngineService {
           },
         };
       })
-      .filter((enemy) => !enemy.isDead || enemy.health > 0);
+      .filter((enemy) => !enemy.isDead && enemy.health > 0);
 
     this.gameState.update((state) => ({ ...state, enemies: updatedEnemies }));
   }
@@ -400,7 +400,7 @@ export class GameEngineService {
     const state = this.gameState();
     if (state.enemies.length === 0 && this.enemySpawnQueue.length === 0) {
       if (state.stats.currentWave < state.stats.totalWaves) {
-        setTimeout(() => this.startWave(state.stats.currentWave + 1), 3000);
+        setTimeout(() => this.startWave(state.stats.currentWave + 1), 1500); // 1.5 secondes entre vagues
       } else {
         this.onVictory();
       }

@@ -150,9 +150,9 @@ export class PixelRendererService {
   private getDefenseColor(type: DefenseType): string {
     switch (type) {
       case DefenseType.PC_LINUX:
-        return COLORS.FG; // Vert terminal
+        return COLORS.FG; // Bleu foncé
       case DefenseType.PC_RECONDITIONED:
-        return COLORS.CYAN;
+        return COLORS.CYAN; // Bleu clair
       case DefenseType.LOCAL_SERVER:
         return COLORS.MAGENTA;
       case DefenseType.ECO_DELEGATE:
@@ -266,8 +266,8 @@ export class PixelRendererService {
     this.ctx.fillStyle = COLORS.GRAY;
     this.ctx.fillRect(x - width / 2, y, width, barHeight);
 
-    // Health (vert phosphore)
-    this.ctx.fillStyle = COLORS.FG;
+    // Health (bleu clair)
+    this.ctx.fillStyle = COLORS.CYAN;
     this.ctx.fillRect(x - width / 2, y, width * healthPercentage, barHeight);
   }
 

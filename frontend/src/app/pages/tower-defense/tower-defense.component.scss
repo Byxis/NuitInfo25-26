@@ -13,7 +13,7 @@
   margin-bottom: 0.5rem;
   padding: 0.5rem;
   background: #000;
-  border: 3px solid #00ff00;
+  border: 3px solid #1e3a8a;
 }
 
 .title {
@@ -31,10 +31,23 @@
 
 .game-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 0.5rem;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+    gap: 0.5rem;
+  }
 }
 
 .menu-screen {
@@ -42,8 +55,8 @@
   margin: 1rem auto;
   padding: 1.5rem;
   background: #000;
-  border: 3px solid #00ff00;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  border: 3px solid #1e3a8a;
+  box-shadow: 0 0 20px rgba(30, 58, 138, 0.4);
 }
 
 .menu-content {
@@ -53,19 +66,20 @@
 .logo {
   font-size: 3rem;
   margin-bottom: 0.5rem;
-  color: #00ffff;
-  text-shadow: 0 0 10px #00ffff;
+  color: #60a5fa;
+  text-shadow: 0 0 10px #60a5fa;
 }
 
 .menu-title {
   font-size: 1.25rem;
-  color: #ffff00;
+  color: #60a5fa;
   margin: 0 0 0.5rem 0;
+  text-shadow: 0 0 5px #60a5fa;
 }
 
 .menu-description {
   font-size: 0.9rem;
-  color: #00ff00;
+  color: #93c5fd;
   margin-bottom: 0.75rem;
 }
 
@@ -73,12 +87,12 @@
   text-align: left;
   padding: 0.75rem;
   background: #000;
-  border: 2px solid #00ff00;
+  border: 2px solid #1e3a8a;
   margin-bottom: 0.75rem;
 
   h3 {
     margin: 0 0 0.5rem 0;
-    color: #00ffff;
+    color: #60a5fa;
     font-size: 1rem;
   }
 
@@ -89,7 +103,7 @@
 
   li {
     margin: 0.25rem 0;
-    color: #00ff00;
+    color: #93c5fd;
     font-size: 0.85rem;
   }
 }
@@ -104,21 +118,22 @@
 .info-card {
   padding: 0.5rem;
   background: #000;
-  border: 2px solid #00ff00;
+  border: 2px solid #1e3a8a;
   font-size: 0.85rem;
+  color: #93c5fd;
 }
 
 .btn-start {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   background: #000;
-  color: #00ff00;
-  border: 3px solid #00ff00;
+  color: #60a5fa;
+  border: 3px solid #1e3a8a;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
 
   &:hover {
-    background: #00ff00;
-    color: #000;
+    background: #1e3a8a;
+    color: #fff;
   }
 }

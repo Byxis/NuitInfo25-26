@@ -1,7 +1,12 @@
 .canvas-container {
   background: #000;
-  border: 3px solid #00ff00;
-  box-shadow: inset 0 0 30px rgba(0, 255, 0, 0.1);
+  border: 3px solid #1e3a8a;
+  box-shadow: inset 0 0 30px rgba(30, 58, 138, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 canvas {
@@ -11,4 +16,7 @@ canvas {
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   filter: contrast(1.1);
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }
