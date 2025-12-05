@@ -31,22 +31,30 @@ export class UserService {
     return this.http.get<UserDto>(`${environment.apiUrl}/users/${id}`, { withCredentials: true });
   }
 
-  updateGameProgress(games: Partial<Pick<UserDto, 'hasFinishedGame1' | 'hasFinishedGame2' | 'hasFinishedGame3' | 'hasFinishedGame4'>>) {
-    return this.http.patch<UserDto>(
-      `${environment.apiUrl}/users/me/games`,
-      games,
-      { withCredentials: true }
-    ).pipe(
-      tap((user) => this.currentUser.set(user)),
-      catchError((err) => {
-        console.error('Error updating game progress:', err);
-        throw err;
-      })
-    );
+  updateGameProgress(
+    games: Partial<
+      Pick<
+        UserDto,
+        'hasFinishedGame1' | 'hasFinishedGame2' | 'hasFinishedGame3' | 'hasFinishedGame4'
+      >
+    >
+  ) {
+    return this.http
+      .patch<UserDto>(`${environment.apiUrl}/users/me/games`, games, { withCredentials: true })
+      .pipe(
+        tap((user) => this.currentUser.set(user)),
+        catchError((err) => {
+          console.error('Error updating game progress:', err);
+          throw err;
+        })
+      );
   }
 
   markGameAsFinished(gameNumber: 1 | 2 | 3 | 4) {
-    const key = `hasFinishedGame${gameNumber}` as keyof Pick<UserDto, 'hasFinishedGame1' | 'hasFinishedGame2' | 'hasFinishedGame3' | 'hasFinishedGame4'>;
+    const key = `hasFinishedGame${gameNumber}` as keyof Pick<
+      UserDto,
+      'hasFinishedGame1' | 'hasFinishedGame2' | 'hasFinishedGame3' | 'hasFinishedGame4'
+    >;
     return this.updateGameProgress({ [key]: true });
   }
 }
