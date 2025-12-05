@@ -13,8 +13,13 @@
 
     font-family: 'Press Start 2P', monospace;
 
+    .windows {
+        cursor: url('../../../../public/cursor.png') 0 0, auto;
+    }
 
-    cursor: url('../../../../public/cursor.png') 0 0, auto;
+    .linux {
+        cursor: url('../../../../public/cursor-linux.png') 0 0, auto;
+    }
 
 
     .desktop-area {

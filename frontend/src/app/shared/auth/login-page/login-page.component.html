@@ -1,18 +1,25 @@
-@for (u of usernames; track u) {
-    @if (selectedUsername() === null || selectedUsername() === u) {
-        <login
-        [username]="u"
-        [selected]="selectedUsername()"
-        (select)="selectUser($event)"
-        (clear)="selectedUsername.set(null)"
-        />
-    }
-}
-@if (selectedUsername() === null || selectedUsername() === registerKey) {
-<app-register-page
+<div class="user-selection-container">
+  @for (u of usernames; track u) { @if (selectedUsername() === null || selectedUsername() === u) {
+  <login
+    [username]="u"
+    [selected]="selectedUsername()"
+    (select)="selectUser($event)"
+    (clear)="selectedUsername.set(null)"
+  />
+  } } @if (selectedUsername() === null || selectedUsername() === registerKey) {
+  <app-register-page
     [key]="registerKey"
     [selected]="selectedUsername()"
     (selectRegister)="selectUser(registerKey)"
     (clear)="selectedUsername.set(null)"
-/>
-}
+  />
+  }
+</div>
+
+<div class="time-display">
+  <p class="time">{{ currentTime }}</p>
+</div>
+
+<div class="date-display">
+  <p class="date">{{ currentDate }}</p>
+</div>

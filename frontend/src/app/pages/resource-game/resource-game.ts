@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Building, GameState, GridCell } from './game';
+import { UserService } from '@users/user.service';
+import { BiosAnim } from '../bios-anim/bios-anim';
 
 @Component({
   selector: 'app-resource-game',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,BiosAnim],
   templateUrl: './resource-game.html',
   styleUrl: './resource-game.scss',
 })
@@ -15,6 +17,8 @@ export class ResourceGameComponent implements OnInit {
   // Grille
   grid: GridCell[][] = [];
   gridSize = { rows: 10, cols: 10 };
+
+  playBiosAnim = signal<boolean>(false);
 
   // Items
   availableBuildings: Building[] = [];
@@ -67,6 +71,8 @@ export class ResourceGameComponent implements OnInit {
   startLinuxGame(): void {
     this.initializeGrid();
     this.showUpdateModal = false;
+
+    this.playBiosAnim.set(true);
 
     this.gameState = {
       os: 'linux',
@@ -233,5 +239,20 @@ export class ResourceGameComponent implements OnInit {
 
   handleGameWin(): void {
       this.gameState.gameWon = true;
+      this.win()
+  }
+
+  statusType = signal<'success' | 'error' | ''>('');
+  statusMessage = signal<string>('');
+  userService = inject(UserService);
+
+  win() {
+    this.statusMessage.set('Réussi: Tous les processus inutiles ont été terminés! Bravo !');
+    this.statusType.set('success');
+    this.userService.markGameAsFinished(4).subscribe({
+      next: () => {
+        console.log('Game 4 marked as finished for the user.');
+      },
+    });
   }
 }
