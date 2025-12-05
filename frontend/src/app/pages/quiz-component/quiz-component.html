@@ -1,0 +1,95 @@
+<div class="quiz-container">
+  @if (quizFinished) {
+    <div class="quiz-card finished">
+      <h2 class="title">Quiz Terminé ! 🎉</h2>
+      <p class="score-display">{{ score }}/{{ questions.length }}</p>
+      <p class="result-message">{{ resultMessage }}</p>
+      <button class="btn btn-primary" (click)="restartQuiz()">
+        🔄 Recommencer le Quiz
+      </button>
+    </div>
+  }
+
+  @if (!quizFinished) {
+    <div class="quiz-card">
+      <div class="header">
+        <div class="header-info">
+          <span class="question-number">Question {{ currentQuestion + 1 }}/{{ questions.length }}</span>
+          <span class="score">Score: {{ score }}</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="progressPercentage"></div>
+        </div>
+      </div>
+
+      <div class="question-info">
+        <h3 class="composant">{{ currentQuestionData.composant }}</h3>
+        <p class="enjeu">🎯 Enjeu NIRD : {{ currentQuestionData.enjeu }}</p>
+      </div>
+
+      <div class="question-box">
+        <p class="question-text">{{ currentQuestionData.question }}</p>
+      </div>
+
+      @if (!showResult) {
+        <div class="answer-section qcm-options">
+          @for (option of currentQuestionData.options; track $index) {
+            <div 
+              class="qcm-option-button"
+              [class.selected]="userAnswer === option"
+              (click)="userAnswer = option"
+            >
+              {{ option }}
+            </div>
+          }
+          <button
+            class="btn btn-primary mt-4"
+            (click)="checkAnswer()"
+            [disabled]="!userAnswer"
+          >
+            Valider la réponse
+          </button>
+        </div>
+      }
+
+      @if (showResult) {
+        <div class="result-box" [class.correct]="isCorrect" [class.incorrect]="!isCorrect">
+          <div class="result-header">
+            @if (isCorrect) {
+              <span class="icon">✓</span>
+              <span class="result-title">Correct !</span>
+            } @else {
+              <span class="icon">✗</span>
+              <span class="result-title">Incorrect</span>
+            }
+          </div>
+          @if (!isCorrect) {
+            <p class="expected-answer">
+              <span class="label">Réponse attendue :</span> {{ currentQuestionData.reponse }}
+            </p>
+          }
+
+          <div class="feedback-options-qcm">
+             @for (option of currentQuestionData.options; track $index) {
+                <div 
+                    class="qcm-feedback-item"
+                    [class.correct-option]="option === currentQuestionData.reponse"
+                    [class.user-choice]="option === userAnswer"
+                >
+                    {{ option }}
+                </div>
+             }
+          </div>
+
+          <button class="btn btn-primary mt-4" (click)="nextQuestion()">
+            @if (currentQuestion < questions.length - 1) {
+              Question Suivante →
+            } @else {
+              Voir les Résultats →
+            }
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>
