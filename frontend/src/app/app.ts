@@ -4,12 +4,14 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { DesktopComponent } from './elements/desktop/desktop';
+import { LaserGame } from "./pages/laser-game/laser-game";
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-  ],
+    LaserGame
+],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
