@@ -23,12 +23,18 @@ export class DesktopComponent {
   apps: App[] = [
     { id: 'accueil', name: 'Accueil', icon: 'file.png', type: 'txt', component: Accueil },
     { id: 'credits', name: 'Crédits', icon: 'file.png', type: 'txt', component: Credits },
-    { id: 'equipe', name: "L'Équipe", icon: 'file.png', type: 'txt', component: Equipe }
-    {id: 'snake', name: 'Snake.exe', icon: 'file.png', type: 'txt', component: SnakeComponent},
-    {id: 'tower', name: 'Tower Defense.exe', icon: 'file.png', type: 'txt', component: TowerDefenseComponent},
-    {id: 'task', name: 'Task manager.exe', icon: 'file.png', type: 'txt', component: TaskManager},
-  ]
-    //{id: 'jeux', name: 'Jeux', icon: '', type: 'folder', component: FolderWindowComponent}
+    { id: 'equipe', name: "L'Équipe", icon: 'file.png', type: 'txt', component: Equipe },
+    { id: 'snake', name: 'Snake.exe', icon: 'file.png', type: 'txt', component: SnakeComponent },
+    {
+      id: 'tower',
+      name: 'Tower Defense.exe',
+      icon: 'file.png',
+      type: 'txt',
+      component: TowerDefenseComponent,
+    },
+    { id: 'task', name: 'Task manager.exe', icon: 'file.png', type: 'txt', component: TaskManager },
+  ];
+  //{id: 'jeux', name: 'Jeux', icon: '', type: 'folder', component: FolderWindowComponent}
 
   openWindows: any[] = [];
 
