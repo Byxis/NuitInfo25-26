@@ -15,8 +15,6 @@ export class GameEngineService {
   private lastTime = 0;
   private enemySpawnQueue: { type: EnemyType; spawnTime: number }[] = [];
   private waveStartTime = 0;
-  private currentComboTimer = 0;
-  private readonly COMBO_TIMEOUT = 500; // 0.5 second
 
   getInitialState(): GameState {
     return {
@@ -32,8 +30,6 @@ export class GameEngineService {
         enemiesKilled: 0,
         totalShots: 0,
         successfulShots: 0,
-        combos: 0,
-        maxCombo: 0,
         budgetSaved: 0,
         co2Saved: 0,
         pcReconditioned: 0,
@@ -170,7 +166,6 @@ export class GameEngineService {
     this.updateEnemies(deltaTime);
     this.updateDefenses(deltaTime);
     this.updateProjectiles(deltaTime);
-    this.updateCombos(deltaTime);
     this.checkWaveCompletion();
     this.checkGameOver();
   }
@@ -352,15 +347,9 @@ export class GameEngineService {
         successfulShots: enemiesHit > 0 ? state.stats.successfulShots + 1 : state.stats.successfulShots,
       },
     }));
-
-    if (enemiesHit > 1) {
-      this.addCombo();
-    }
   }
 
   private onEnemyKilled(enemy: Enemy): void {
-    this.currentComboTimer = this.COMBO_TIMEOUT;
-
     this.gameState.update((state) => {
       const newStats = {
         ...state.stats,
@@ -375,26 +364,7 @@ export class GameEngineService {
     });
   }
 
-  private addCombo(): void {
-    this.gameState.update((state) => ({
-      ...state,
-      stats: {
-        ...state.stats,
-        combos: state.stats.combos + 1,
-        maxCombo: Math.max(state.stats.maxCombo, state.stats.combos + 1),
-      },
-    }));
-  }
 
-  private updateCombos(deltaTime: number): void {
-    this.currentComboTimer -= deltaTime * 1000;
-    if (this.currentComboTimer <= 0) {
-      this.gameState.update((state) => ({
-        ...state,
-        stats: { ...state.stats, combos: 0 },
-      }));
-    }
-  }
 
   private checkWaveCompletion(): void {
     const state = this.gameState();

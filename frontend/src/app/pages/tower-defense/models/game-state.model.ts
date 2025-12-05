@@ -22,8 +22,6 @@ export interface GameStats {
   enemiesKilled: number;
   totalShots: number;
   successfulShots: number;
-  combos: number;
-  maxCombo: number;
   budgetSaved: number; // Euros
   co2Saved: number; // Tons
   pcReconditioned: number;

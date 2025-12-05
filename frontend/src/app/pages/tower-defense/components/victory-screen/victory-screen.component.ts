@@ -29,7 +29,6 @@ export class VictoryScreenComponent {
       stats.budgetSaved +
       stats.pcReconditioned * 50 +
       stats.autonomyGained * 10 +
-      stats.maxCombo * 20 +
       (stats.lives * 100)
     );
   }
@@ -39,7 +38,6 @@ export class VictoryScreenComponent {
     const achievements: string[] = [];
 
     if (stats.enemiesKilled >= 20) achievements.push('🏆 Tueur de BigTech');
-    if (stats.maxCombo >= 5) achievements.push('⚡ Combo Master');
     if (this.accuracyPercent >= 80) achievements.push('🎯 Tireur d\'élite');
     if (stats.pcReconditioned >= 30) achievements.push('♻️ Roi du recyclage');
     if (stats.budgetSaved >= 10000) achievements.push('💰 Économe exemplaire');
