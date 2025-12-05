@@ -1,0 +1,15 @@
+<div class="computer-frame">
+    <div class="desktop-area">
+        @for (app of apps; track app.id) {
+            <app-app-icon [app]="app" (open)="openApp($event)"></app-app-icon>
+        }
+    
+
+        @for (win of openWindows; track win.id) {
+            <app-window [component]="win.component"  [title]="win.name" (close)="closeApp(win)" > </app-window>
+        }
+
+    </div>
+
+    <app-taskbar></app-taskbar>
+</div>

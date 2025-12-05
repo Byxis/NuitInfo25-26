@@ -1,0 +1,21 @@
+<div class="folder-window">
+    <div classs="titlebar">
+        {{folderName()}}
+        <button class="close-btn">x</button>
+    </div>
+    <div class="folder-content">
+        <div class="folder-item"> 
+            @for (item of items(); track item.id) {
+                <button class="folder-btn" (click)="openItem(item)">
+                    @if (item.type === 'folder') {
+                        FOLDER
+                    }
+                    @else if (item.type === 'txt') {
+                        TEXT
+                    }
+                    <span>{{item.name}}</span>
+                </button>
+            }
+        </div>        
+    </div>
+</div>
