@@ -1,6 +1,7 @@
 import { Component, inject, signal} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ComponentKey } from '../../shared/types/nird-composant.enum';
+import { QuizComponent } from "../quiz-component/quiz-component";
 
 // Interface pour définir la structure de chaque explication de composant
 interface ComposantNIRD {
@@ -17,11 +18,15 @@ interface ComposantNIRD {
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-  ],
+    QuizComponent
+],
   templateUrl: './quizz.html',
   styleUrl: './quizz.scss'
 })
 export class Quizz {
+
+    PcVisible = true
+    
     readonly router = inject(Router);
     selectedComponent = signal<ComponentKey>(ComponentKey.NONE);
     readonly ComponentKey = ComponentKey;
@@ -112,6 +117,6 @@ export class Quizz {
     reponseQuizz: 'Pour protéger les informations, éviter qu’elles partent à l’étranger et garantir leur sécurité.',
   }
   goToQuiz() {
-    this.router.navigate(['quizComponent']);
+    this.PcVisible = false;
   }
 }
