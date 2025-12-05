@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { TaskbarComponent } from '../taskbar/taskbar';
 import { FileItem } from '../file-item';
 import { App } from '../app-model';
@@ -16,10 +17,11 @@ import { QuizComponent } from 'src/app/pages/quiz-component/quiz-component';
 import { Quizz } from 'src/app/pages/quizz/quizz';
 import { UserService } from '@users/user.service';
 import { ResourceGameComponent } from 'src/app/pages/resource-game/resource-game';
-import { NgClass } from '@angular/common';
+import { ChatbotComponent } from 'src/app/shared/chatbot/chatbot-component/chatbot-component';
+
 @Component({
   selector: 'app-desktop',
-  imports: [TaskbarComponent, AppIconComponent, Window,NgClass],
+  imports: [TaskbarComponent, AppIconComponent, Window, NgClass, ChatbotComponent],
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss',
 })

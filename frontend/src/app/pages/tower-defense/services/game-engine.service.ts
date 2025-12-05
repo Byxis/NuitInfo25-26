@@ -1,9 +1,10 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
 import { GameState, GameStatus, GameStats, Projectile } from '../models/game-state.model';
 import { Defense, DefenseType, DEFENSE_CONFIGS } from '../models/defense.model';
 import { Enemy, EnemyType, ENEMY_CONFIGS } from '../models/enemy.model';
 import { GridPosition, Position } from '../models/position.model';
 import { GAME_CONFIG, WAVES, ENEMY_PATH, isPathTile } from '../utils/constants';
+import { UserService } from '@users/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -394,6 +395,22 @@ export class GameEngineService {
       cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
     }
+    this.win();
+    
+  }
+
+  statusMessage = signal<string>('');
+  statusType = signal<'success' | 'error' | ''>('');
+  userService = inject(UserService);
+
+  win() {
+    this.statusMessage.set('Réussi: Tous les processus inutiles ont été terminés! Bravo !');
+    this.statusType.set('success');
+    this.userService.markGameAsFinished(1).subscribe({
+      next: () => {
+        console.log('Game 1 marked as finished for the user.');
+      },
+    });
   }
 
   private getDistance(pos1: Position, pos2: Position): number {

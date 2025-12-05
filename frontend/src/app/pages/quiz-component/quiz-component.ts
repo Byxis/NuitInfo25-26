@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserService } from '@users/user.service';
 
 // Mise à jour de l'interface pour inclure les options de réponse
 interface QuestionQuizz {
@@ -121,6 +122,9 @@ export class QuizComponent {
     }
   ];
 
+  
+  userService = inject(UserService);
+
   currentQuestion: number = 0;
   userAnswer: string = ''; 
   showResult: boolean = false;
@@ -137,11 +141,33 @@ export class QuizComponent {
   }
 
   get resultMessage(): string {
+    var hasWon = false
     const percentage = (this.score / this.questions.length);
-    if (this.score === this.questions.length) return "Parfait ! Vous maîtrisez le NIRD !";
-    if (percentage >= 0.7) return "Excellent travail !";
-    if (percentage >= 0.5) return "Bien joué, continuez !";
+    if (this.score === this.questions.length) {
+      this.win()
+      return "Parfait ! Vous maîtrisez le NIRD !";
+    }
+    if (percentage >= 0.7) {
+      this.win()
+      return "Excellent travail !";
+    }
+    if (percentage >= 0.5) {
+      this.win()
+      return "Bien joué, continuez !";
+    }
     return "Révisez les concepts NIRD et réessayez !";
+  }
+  bolIsFinished: boolean = false;
+
+  win() {
+    if (this.bolIsFinished) { return; }
+    this.bolIsFinished = true;
+    this.userService.markGameAsFinished(3).subscribe({
+      error: (err) => {
+        console.error('Error marking game as finished:', err);
+      }
+      
+    });
   }
 
   checkAnswer(): void {
