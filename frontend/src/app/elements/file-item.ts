@@ -3,5 +3,5 @@ export interface FileItem {
     name: string;
     type: 'folder' | 'txt' | 'exe';
     component?: any;
-    children?: FileItem[]; 
+    children: FileItem[]; 
 }

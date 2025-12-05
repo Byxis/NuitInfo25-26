@@ -6,7 +6,7 @@
     
 
         @for (win of openWindows; track win.id) {
-            <app-window [component]="win.component"  [title]="win.name" (close)="closeApp(win)" > </app-window>
+            <app-window [component]="win.component" [x]="win.x" [y]="win.y" [title]="win.name" (close)="closeApp(win)" > </app-window>
         }
 
     </div>

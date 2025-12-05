@@ -16,12 +16,8 @@ import { Window } from '../window/window';
 export class DesktopComponent {
   apps: App[] = [
     {id: 'accueil', name: 'Accueil', icon: 'file.png', type: 'txt', component: Accueil},
-    {id: 'jeux', name: 'Jeux', icon: '', type: 'folder', items: [
-      {id: 'towerdefensefolder', name: 'Tower Defense', type: 'folder', children: [
-        {id: 'towerdefense', name: 'Tower Defense', type: 'exe', component: ''}
-      ]}
-    ]}
   ]
+    //{id: 'jeux', name: 'Jeux', icon: '', type: 'folder', component: FolderWindowComponent}
 
   openWindows: any[] = [];
 
@@ -30,17 +26,8 @@ export class DesktopComponent {
 
     if(alreadyOpen)
       return
-    if (app.type === 'folder') {
-      this.openWindows.push({
-        id: app.id,
-        name: app.name,
-        Component: FolderWindowComponent,
-        data: app.items
-      })
-    }
-    else {
-      this.openWindows.push({id: app.id, name: app.name, component: app.component});
-    }
+    this.openWindows.push({id: app.id, name: app.name, component: app.component});
+
   }
 
   closeApp(win: any) {
