@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { TaskbarComponent } from '../taskbar/taskbar';
 import { FileItem } from '../file-item';
 import { App } from '../app-model';
@@ -19,7 +20,7 @@ import { ResourceGameComponent } from 'src/app/pages/resource-game/resource-game
 
 @Component({
   selector: 'app-desktop',
-  imports: [TaskbarComponent, AppIconComponent, Window],
+  imports: [TaskbarComponent, AppIconComponent, Window, NgClass],
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss',
 })

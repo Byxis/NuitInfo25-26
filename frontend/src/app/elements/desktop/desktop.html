@@ -1,17 +1,21 @@
 <div class="computer-frame">
-    <div class="userService.isGame3Finished() ? linux : windows">
-        <div class="userService.isGame1Finished() ? linux-area: desktop-area" >
-            @for (app of apps; track app.id) {
-                <app-app-icon [app]="app" (open)="openApp($event)"></app-app-icon>
-            }
-        
-
-            @for (win of openWindows; track win.id) {
-                <app-window [component]="win.component" [title]="win.name" (close)="closeApp(win)" > </app-window>
-            }
-
-        </div>
-
-        <app-taskbar (openSnakeO)="openApp(this.snake)"></app-taskbar>
+  <div
+    class="desktop-wrapper"
+    [class.linux]="userService.isGame3Finished()"
+    [class.windows]="!userService.isGame3Finished()"
+  >
+    <div
+      [class.linux-area]="userService.isGame1Finished()"
+      [class.desktop-area]="!userService.isGame1Finished()"
+    >
+      @for (app of apps; track app.id) {
+      <app-app-icon [app]="app" (open)="openApp($event)"></app-app-icon>
+      } @for (win of openWindows; track win.id) {
+      <app-window [component]="win.component" [title]="win.name" (close)="closeApp(win)">
+      </app-window>
+      }
     </div>
+
+    <app-taskbar (openSnakeO)="openApp(this.snake)"></app-taskbar>
+  </div>
 </div>
