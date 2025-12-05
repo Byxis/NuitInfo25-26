@@ -1,4 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserDto } from 'src/app/shared/types/user-dto';
 import { environment } from '@env/environment';
@@ -8,6 +9,7 @@ import { catchError, finalize, of, tap } from 'rxjs';
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
 
   // --- État interne (signaux) ---
   private readonly _currentUser = signal<UserDto | null>(null);
@@ -35,7 +37,9 @@ export class AuthService {
         tap((res) => {
           if (res?.user) {
             this._currentUser.set(res.user);
-            console.log(`👍 Utilisateur connecté : ${JSON.stringify(res.user)}`); // DEBUG
+            console.log( `👍 Utilisateur connecté : ${JSON.stringify(res.user)}`); // DEBUG
+            this.router.navigate(['']);
+
           } else {
             this._error.set('Identifiants invalides');
             this._currentUser.set(null);

@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { NgComponentOutlet } from '@angular/common';
 import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { ChatbotComponent } from 'src/app/shared/chatbot/chatbot-component/chatbot-component';
 
 @Component({
   selector: 'app-window',
