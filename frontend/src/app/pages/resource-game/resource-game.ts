@@ -2,11 +2,12 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Building, GameState, GridCell } from './game';
 import { UserService } from '@users/user.service';
+import { BiosAnim } from '../bios-anim/bios-anim';
 
 @Component({
   selector: 'app-resource-game',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,BiosAnim],
   templateUrl: './resource-game.html',
   styleUrl: './resource-game.scss',
 })
@@ -16,6 +17,8 @@ export class ResourceGameComponent implements OnInit {
   // Grille
   grid: GridCell[][] = [];
   gridSize = { rows: 10, cols: 10 };
+
+  playBiosAnim = signal<boolean>(false);
 
   // Items
   availableBuildings: Building[] = [];
@@ -68,6 +71,8 @@ export class ResourceGameComponent implements OnInit {
   startLinuxGame(): void {
     this.initializeGrid();
     this.showUpdateModal = false;
+
+    this.playBiosAnim.set(true);
 
     this.gameState = {
       os: 'linux',
