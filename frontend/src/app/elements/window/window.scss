@@ -3,6 +3,11 @@
     background: #222;
     border: 2px solid #555;
     font-family: 'Press Start 2P', monospace;
+    max-width: 70vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 
     .titlebar {
         height: 30px;
@@ -11,6 +16,7 @@
         justify-content: space-between;
         align-items: center;
         cursor: move;
+        flex-shrink: 0;
         
         .close-btn {
             background: transparent;
@@ -26,5 +32,6 @@
         padding: 8px;
         overflow: auto;
         background: #1a1a1a;
+        min-height: 0;
     }
 }
