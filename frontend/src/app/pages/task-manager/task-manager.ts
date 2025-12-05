@@ -1,6 +1,7 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task, Process } from './task/task';
+import { UserService } from '@users/user.service';
 
 @Component({
   selector: 'app-task-manager',
@@ -14,6 +15,7 @@ export class TaskManager implements OnInit {
   selectedProcess = signal<Process | null>(null);
   statusMessage = signal<string>('');
   statusType = signal<'success' | 'error' | ''>('');
+  userService = inject(UserService);
 
   globalCpu = computed(() => this.processes().reduce((sum, p) => sum + p.cpu, 0));
   globalMemory = computed(() => this.processes().reduce((sum, p) => sum + p.memory, 0));
@@ -127,6 +129,11 @@ export class TaskManager implements OnInit {
   win() {
     this.statusMessage.set('Réussi: Tous les processus inutiles ont été terminés! Bravo !');
     this.statusType.set('success');
+    this.userService.markGameAsFinished(2).subscribe({
+      next: () => {
+        console.log('Game 2 marked as finished for the user.');
+      },
+    });
   }
 
   clearStatus() {
