@@ -20,7 +20,7 @@ export class BiosAnim implements OnDestroy, OnInit{
     '[    0.023456] Starting systemd...',
     '[    0.045678] Starting Network Manager...',
     '[    1.200000] Reached target Graphical Interface.',
-    '[    1.350000] Ubuntu 22.04 LTS dawoldo-virtual-machine tty1',
+    '[    1.350000] Ubuntu 22.04 LTS NIRD-virtual-machine tty1',
   ];
 
   readonly visibleBootCount = signal(0);
