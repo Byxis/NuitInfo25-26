@@ -1,0 +1,52 @@
+<div class="screen">
+  <div class="scanline"></div>
+
+  @if (phase() === 'bios') {
+    <div class="bios">
+      <div class="bios-header">
+        AMI BIOS (C) 1994-2024 American Megatrends, Inc.
+      </div>
+      <div class="bios-body">
+        <p>CPU: Intel(R) Core(TM) i7-8650U @ 1.90GHz</p>
+        <p>Memory Test: 16384K OK</p>
+        <p>Fixed Disk 0: WDC WD10EZEX-00WN4A0</p>
+        <p>CD-ROM: HL-DT-ST DVDRAM GUE1N</p>
+
+        <p class="bios-press-key">
+          Press F2 for Setup &nbsp;&nbsp;|&nbsp;&nbsp; Press F12 for Boot Menu
+        </p>
+
+        <p class="bios-bottom">
+          Detecting IDE drives...
+        </p>
+      </div>
+    </div>
+  }
+
+  @if (phase() === 'boot') {
+    <div class="boot-log">
+      <div class="ubuntu-logo">Ubuntu</div>
+      <div class="boot-lines">
+        @for (line of visibleBootLines(); track $index) {
+          <div class="boot-line">{{ line }}</div>
+        }
+      </div>
+      <div class="boot-progress">
+        <div class="boot-bar">
+          <div
+            class="boot-bar-fill"
+            [style.width.%]="(visibleBootCount() /  this.bootLines.length) * 100"
+          ></div>
+        </div>
+        <span>Booting Ubuntu...</span>
+      </div>
+    </div>
+  }
+
+  @if (phase() === 'ubuntu') {
+    <div class="ubuntu-desktop">
+      <div class="ubuntu-logo-big">ubuntu</div>
+      <p class="ubuntu-text">Welcome!</p>
+    </div>
+  }
+</div>
