@@ -118,5 +118,45 @@
     {
         "id": 30,
         "text": "*Ventilateur à fond*... Voilà, je crois que j'ai couvert l'essentiel ! Si vous avez des questions, n'hésitez pas ! Je répondrai... éventuellement... quand j'aurai fini de charger..."
+    },
+    {
+        "id": 31,
+        "appId": "snake",
+        "text": "🐍 Le Snake ! Un classique ! Attention à ne pas vous mordre la queue... *lag*... comme moi avec mes bugs !"
+    },
+    {
+        "id": 32,
+        "appId": "snake",
+        "text": "Mangez les pommes pour grandir ! Mais... *freeze*... évitez les murs ! C'est pas bon pour la santé numérique !"
+    },
+    {
+        "id": 33,
+        "appId": "laser-game",
+        "text": "🚀 Laser Game ! Pew pew ! Visez bien et... *buffer*... détruisez ces ennemis pixelisés !"
+    },
+    {
+        "id": 34,
+        "appId": "laser-game",
+        "text": "Esquivez les tirs ennemis ! Ou pas... *lag*... en fait je ne sais plus trop comment on joue..."
+    },
+    {
+        "id": 35,
+        "appId": "tower-defense",
+        "text": "🏰 Tower Defense ! Placez vos tours stratégiquement pour... *chargement*... pour empêcher les ennemis de passer !"
+    },
+    {
+        "id": 36,
+        "appId": "tower-defense",
+        "text": "Améliorez vos défenses ! Plus c'est cher, plus c'est... euh... *recherche dans les fichiers*... plus c'est efficace !"
+    },
+    {
+        "id": 37,
+        "appId": "task-manager",
+        "text": "📊 Le Gestionnaire de tâches ! Vous pouvez voir tous les processus... sauf moi, je suis invisible ! *rire nerveux*"
+    },
+    {
+        "id": 38,
+        "appId": "adobe",
+        "text": "🎨 Adobe ? Attendez... *lag*... Ah non, c'est juste Paint déguisé ! Mais ne le dites à personne !"
     }
 ]
