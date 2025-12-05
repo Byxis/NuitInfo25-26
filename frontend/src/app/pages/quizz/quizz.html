@@ -1,0 +1,61 @@
+
+
+<div class="image-container">
+    <img class="computer-picture" src="computer.jpg">
+    <div class="invisible-button-MB" (click)="toggleDisplayMB()">6</div>
+    <div class="invisible-button-alim" (click)="toggleDisplayAlim()">1</div>
+    <div class="invisible-button-box" (click)="toggleDisplayBox()">2</div>
+    <div class="invisible-button-CPU" (click)="toggleDisplayCPU()">3</div>
+    <div class="invisible-button-RAM" (click)="toggleDisplayRAM()">4</div>
+    <div class="invisible-button-Disk" (click)="toggleDisplayDisk()">5</div>
+    <div class="invisible-button-GPU" (click)="toggleDisplayGPU()">7</div>
+</div>
+@if (this.boxVisible) {
+    <div class="info-text-box">
+        <h1>{{this.box.nom}}</h1>
+        <p>Représente la {{this.box.enjeuNird}}</p>
+        <p>{{this.box.explication}}</p>
+    </div>
+}
+@if (this.MBVisible) {
+    <div class="info-text-box">
+        <h1>{{this.MotherBoard.nom}}</h1>
+        <p>Représente la {{this.MotherBoard.enjeuNird}}</p>
+        <p>{{this.MotherBoard.explication}}</p>
+    </div>
+}
+@if (this.alimVisible) {
+    <div class="info-text-box">
+        <h1>{{this.alim.nom}}</h1>
+        <p>Représente la {{this.alim.enjeuNird}}</p>
+        <p>{{this.alim.explication}}</p>
+    </div>
+}
+@if (this.CPUVisible) {
+    <div class="info-text-box">
+        <h1>{{this.CPU.nom}}</h1>
+        <p>Représente la {{this.CPU.enjeuNird}}</p>
+        <p>{{this.CPU.explication}}</p>
+    </div>
+}
+@if (this.RAMVisible) {
+    <div class="info-text-box">
+        <h1>{{this.RAM.nom}}</h1>
+        <p>Représente la {{this.RAM.enjeuNird}}</p>
+        <p>{{this.RAM.explication}}</p>
+    </div>
+}
+@if (this.diskVisible) {
+    <div class="info-text-box">
+        <h1>{{this.Disk.nom}}</h1>
+        <p>Représente la {{this.Disk.enjeuNird}}</p>
+        <p>{{this.Disk.explication}}</p>
+    </div>
+}
+@if (this.GPUVisible) {
+    <div class="info-text-box">
+        <h1>{{this.GPU.nom}}</h1>
+        <p>Représente la {{this.box.enjeuNird}}</p>
+        <p>{{this.GPU.explication}}</p>
+    </div>
+}

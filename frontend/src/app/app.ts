@@ -41,4 +41,9 @@ export class App {
   goToLoginPage() {
     this.router.navigate(['login']);
   }
+
+  goToQuizz() {
+    this.router.navigate(['quizz']);
+  }
+
 }

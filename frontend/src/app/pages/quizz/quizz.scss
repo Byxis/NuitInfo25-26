@@ -1,0 +1,142 @@
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 500px;
+}
+
+.computer-picture {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Boutons invisibles avec positionnement relatif à l'image */
+[class^="invisible-button-"] {
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border 0.2s ease;
+}
+
+[class^="invisible-button-"]:hover {
+    border: 1px solid rgba(245, 244, 244, 0.61);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Alimentation (PSU) - En bas à gauche */
+.invisible-button-alim {
+    width: 21%;
+    height: 13%;
+    top: 70%;
+    left: 13%;
+}
+
+/* Boîtier - Côté droit */
+.invisible-button-box {
+    width: 12%;
+    height: 80%;
+    top: 10%;
+    left: 80%;
+}
+
+/* CPU - Centre gauche */
+.invisible-button-CPU {
+    width: 12%;
+    height: 20%;
+    top: 25%;
+    left: 22%;
+}
+
+/* RAM - Centre (à droite du CPU) */
+.invisible-button-RAM {
+    width: 9%;
+    height: 22%;
+    top: 25%;
+    left: 35%;
+}
+
+/* Disque - Centre droit */
+.invisible-button-Disk {
+    width: 20%;
+    height: 32%;
+    top: 20%;
+    left: 60%;
+}
+
+/* GPU - Milieu bas */
+.invisible-button-GPU {
+    width: 26%;
+    height: 8%;
+    top: 48%;
+    left: 13%;
+}
+
+/* Carte Mère - Centre */
+.invisible-button-MB {
+    width: 30%;
+    height: 50%;
+    top: 20%;
+    left: 15%;
+}
+
+.info-text-box {
+    padding: 20px;
+    display:contents;
+    margin: 20px auto;
+    max-width: 600px;
+    background-color: #141111;
+    border-left: 5px solid #007bff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.info-text-box h1 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+.info-text-box p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #e0e0e0;
+}
+
+/* Media queries pour petits écrans */
+@media (max-width: 768px) {
+    .image-wrapper {
+        padding: 10px;
+    }
+    
+    .info-text-box {
+        position: static;
+        transform: none;
+        max-width: 100%;
+        margin-top: 20px;
+        right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-text-box {
+        padding: 15px;
+    }
+    
+    .info-text-box h1 {
+        font-size: 1.2em;
+    }
+    
+    .info-text-box p {
+        font-size: 0.9em;
+    }
+}
