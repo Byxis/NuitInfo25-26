@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "text": "Bonjour, je suis Clippy, le fameux assistant de Windows! Laissez moi vous guider dans notre magnifique OS"
+    },
+    {
+        "id": 2,
+        "text": "Que diriez-vous de vous découvrir l'un de nos premiers jeux ? Je vous recommande Solitaire, un classique indémodable!"
+    },
+    {
+        "id": 3,
+        "text": "N'hésitez pas à explorer le menu Démarrer pour découvrir toutes les applications et fonctionnalités que Windows 10 a à offrir!"
+    },
+    {
+        "id": 4,
+        "text": "Attendez... Je cherche dans mes fichiers... Ah oui ! Saviez-vous que vous pouvez personnaliser votre fond d'écran ? Faites un clic droit sur le bureau et... euh... attendez..."
+    },
+    {
+        "id": 5,
+        "text": "Désolé pour l'attente, je suis un peu lent aujourd'hui... Où en étais-je ? Ah oui ! Le Panneau de configuration ! C'est là que vous pouvez tout régler... enfin presque tout..."
+    },
+    {
+        "id": 6,
+        "text": "Hmm... *bruit de disque dur* ... Parlons de l'Explorateur de fichiers ! C'est cet icône jaune avec un dossier. Vous voyez ? Non ? Attendez, je vais chercher..."
+    },
+    {
+        "id": 7,
+        "text": "La Corbeille ! Voilà un concept révolutionnaire ! Vous supprimez un fichier et... *lag*... il va dans la Corbeille ! Magique, non ?"
+    },
+    {
+        "id": 8,
+        "text": "*Chargement en cours...* Ah ! Internet Explorer ! Le navigateur le plus... euh... le navigateur de Windows ! Pour surfer sur le... attendez, ça charge..."
+    },
+    {
+        "id": 9,
+        "text": "Paint ! Oui, Paint ! L'outil de dessin professionnel de Windows ! Vous pouvez dessiner des... des... *ralentissement* ... des formes ! Et même écrire du texte !"
+    },
+    {
+        "id": 10,
+        "text": "Le Bloc-notes... *respiration lente*... Un éditeur de texte simple mais... euh... où j'ai mis cette info déjà ? Ah oui ! Simple mais efficace pour... pour écrire..."
+    },
+    {
+        "id": 11,
+        "text": "Calculatrice ! Ne sous-estimez jamais... *freeze 2 secondes*... la puissance de la Calculatrice Windows ! Elle peut faire des additions ET des soustractions !"
+    },
+    {
+        "id": 12,
+        "text": "Démineur ! Un jeu passionnant où vous devez... euh... éviter les mines ? Ou les trouver ? Attendez, je vérifie dans l'aide..."
+    },
+    {
+        "id": 13,
+        "text": "*Bruit de ventilateur*... Le Gestionnaire des tâches ! Appuyez sur Ctrl+Alt+Suppr et... bon, moi je n'y apparais pas, c'est normal, je suis trop important..."
+    },
+    {
+        "id": 14,
+        "text": "Windows Update... *soupir numérique*... Cette fonctionnalité qui redémarre votre PC au moment le plus... inopportun... euh... je veux dire, au moment idéal !"
+    },
+    {
+        "id": 15,
+        "text": "La barre des tâches en bas ! Vous pouvez y épingler vos programmes préférés ! Enfin, quand elle veut bien répondre... *lag*"
+    },
+    {
+        "id": 16,
+        "text": "Saviez-vous que vous pouvez créer des dossiers ? Clic droit, Nouveau, Dossier... Attendez, mon animation de trombone charge... Voilà !"
+    },
+    {
+        "id": 17,
+        "text": "*Chargement 15%... 16%...*... Les raccourcis clavier ! Par exemple, Windows + D pour afficher le bureau ! Pratique quand votre patron arrive et que vous jouez au... euh..."
+    },
+    {
+        "id": 18,
+        "text": "Le menu Démarrer version Windows 95 ! Une véritable révolution ! Tout est à portée de... *système qui gèle*... de clic !"
+    },
+    {
+        "id": 19,
+        "text": "WordPad ! C'est comme Word mais... en moins bien... euh... je veux dire, c'est la version légère et gratuite ! Parfait pour... *lag*... pour écrire des choses !"
+    },
+    {
+        "id": 20,
+        "text": "Les économiseurs d'écran ! Ces animations hypnotiques qui apparaissent quand vous... *pause de 3 secondes*... quand vous ne faites rien pendant un moment !"
+    },
+    {
+        "id": 21,
+        "text": "*Recherche d'informations...*... Ah ! Les propriétés système ! Clic droit sur Poste de travail, Propriétés, et vous verrez... combien de RAM vous avez... si j'arrive à charger la page..."
+    },
+    {
+        "id": 22,
+        "text": "Le lecteur Windows Media ! Pour écouter de la musique en format... euh... *buffer*... MP3 ! Avec des visualisations psychédéliques incluses !"
+    },
+    {
+        "id": 23,
+        "text": "Vous pouvez redimensionner les fenêtres ! Tirez sur les bords et... *ralentissement*... la fenêtre change de taille ! Incroyable, n'est-ce pas ?"
+    },
+    {
+        "id": 24,
+        "text": "*Son de modem 56k*... Pour vous connecter à Internet, double-cliquez sur l'icône... attendez que je me souvienne... ah oui, celle avec le globe terrestre !"
+    },
+    {
+        "id": 25,
+        "text": "Le Presse-papiers ! Copiez quelque chose avec Ctrl+C et... *thinking*... collez-le avec Ctrl+V ! Simple mais... mais... qu'est-ce que je disais déjà ?"
+    },
+    {
+        "id": 26,
+        "text": "N'oubliez pas de défragmenter votre disque dur régulièrement ! Ça prend juste... *calcul*... plusieurs heures... mais ça en vaut la peine !"
+    },
+    {
+        "id": 27,
+        "text": "*Bruit de disquette*... Les disquettes 3.5 pouces ! 1.44 Mo de stockage pur ! Vous pouvez sauvegarder... euh... presque rien dessus, mais c'est l'intention qui compte !"
+    },
+    {
+        "id": 28,
+        "text": "Le mode sans échec ! Appuyez sur F8 au démarrage si Windows ne... *freeze*... si Windows ne démarre pas correctement..."
+    },
+    {
+        "id": 29,
+        "text": "Scandisk ! Cet outil merveilleux qui vérifie... *lag*... qui vérifie l'intégrité de votre disque dur pendant que vous... attendez... interminablement..."
+    },
+    {
+        "id": 30,
+        "text": "*Ventilateur à fond*... Voilà, je crois que j'ai couvert l'essentiel ! Si vous avez des questions, n'hésitez pas ! Je répondrai... éventuellement... quand j'aurai fini de charger..."
+    }
+]

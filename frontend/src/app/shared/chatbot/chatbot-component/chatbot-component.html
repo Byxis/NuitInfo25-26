@@ -1,0 +1,57 @@
+    <div class="clippy-container">
+      <!-- Bulle de dialogue -->
+      <div class="speech-bubble" [class.animate]="animate()">
+        <p class="message">{{ current()?.text }}</p>
+      </div>
+
+      <!-- Clippy personnage pixelisé -->
+      <div class="clippy-character" [class.bounce]="animate()">
+        <svg viewBox="0 0 32 48" width="96" height="144">
+          <!-- Corps du trombone -->
+          <rect x="8" y="4" width="2" height="2" fill="#E0E0E0"/>
+          <rect x="6" y="6" width="2" height="2" fill="#E0E0E0"/>
+          <rect x="6" y="8" width="2" height="16" fill="#C0C0C0"/>
+          <rect x="6" y="24" width="2" height="2" fill="#A0A0A0"/>
+          <rect x="8" y="26" width="2" height="2" fill="#A0A0A0"/>
+          <rect x="10" y="28" width="4" height="2" fill="#A0A0A0"/>
+          
+          <rect x="14" y="28" width="2" height="2" fill="#C0C0C0"/>
+          <rect x="16" y="26" width="2" height="2" fill="#C0C0C0"/>
+          <rect x="16" y="10" width="2" height="16" fill="#D0D0D0"/>
+          <rect x="14" y="8" width="2" height="2" fill="#E0E0E0"/>
+          <rect x="10" y="6" width="4" height="2" fill="#E0E0E0"/>
+          
+          <rect x="10" y="10" width="2" height="2" fill="#B0B0B0"/>
+          <rect x="10" y="12" width="2" height="8" fill="#C0C0C0"/>
+          <rect x="10" y="20" width="2" height="2" fill="#A0A0A0"/>
+          <rect x="12" y="22" width="4" height="2" fill="#A0A0A0"/>
+          <rect x="16" y="20" width="2" height="2" fill="#B0B0B0"/>
+          <rect x="18" y="18" width="2" height="2" fill="#C0C0C0"/>
+          <rect x="18" y="14" width="2" height="4" fill="#D0D0D0"/>
+          <rect x="16" y="12" width="2" height="2" fill="#D0D0D0"/>
+          <rect x="12" y="10" width="4" height="2" fill="#C0C0C0"/>
+          
+          <!-- Yeux -->
+          <rect x="10" y="14" width="2" height="2" fill="#000" [class.blink]="animate()"/>
+          <rect x="14" y="14" width="2" height="2" fill="#000" [class.blink]="animate()"/>
+          
+          <!-- Reflets yeux -->
+          <rect x="10" y="14" width="1" height="1" fill="#FFFFFF" opacity="0.6"/>
+          <rect x="14" y="14" width="1" height="1" fill="#FFFFFF" opacity="0.6"/>
+          
+          <!-- Sourcils -->
+          <rect x="9" y="12" width="2" height="1" fill="#808080"/>
+          <rect x="11" y="11" width="1" height="1" fill="#808080"/>
+          <rect x="14" y="11" width="1" height="1" fill="#808080"/>
+          <rect x="15" y="12" width="2" height="1" fill="#808080"/>
+          
+          <!-- Bouche -->
+          <rect x="11" y="18" width="1" height="1" fill="#000"/>
+          <rect x="12" y="19" width="2" height="1" fill="#000"/>
+          <rect x="15" y="18" width="1" height="1" fill="#000"/>
+        </svg>
+      </div>
+
+      <!-- Bouton suivant -->
+      <button class="next-btn" (click)="changeState()">Suivant →</button>
+    </div>
