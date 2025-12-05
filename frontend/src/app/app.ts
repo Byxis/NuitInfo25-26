@@ -5,12 +5,16 @@ import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { DesktopComponent } from './elements/desktop/desktop';
 import { LaserGame } from "./pages/laser-game/laser-game";
+import { BiosAnimWindows } from "./pages/bios-anim-windows/bios-anim-windows";
+import { Windows } from "./pages/windows/windows";
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    LaserGame
+    LaserGame,
+    BiosAnimWindows,
+    Windows
 ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
