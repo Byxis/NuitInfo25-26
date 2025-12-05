@@ -21,27 +21,27 @@ export const WAVES: Wave[] = [
   {
     number: 1,
     enemies: [
-      { type: EnemyType.WINDOWS_EOL, count: 5, delay: 1000 },
-      { type: EnemyType.DRIVER_INCOMPATIBLE, count: 3, delay: 1500 },
+      { type: EnemyType.BUG, count: 5, delay: 1000 },
+      { type: EnemyType.ERROR_404, count: 3, delay: 1500 },
     ],
   },
   {
     number: 2,
     enemies: [
-      { type: EnemyType.WINDOWS_EOL, count: 3, delay: 800 },
-      { type: EnemyType.FORCED_UPDATE, count: 2, delay: 1000 },
-      { type: EnemyType.ANNUAL_LICENSE, count: 2, delay: 1200 },
-      { type: EnemyType.CLOUD_SUBSCRIPTION, count: 1, delay: 1500 },
+      { type: EnemyType.BUG, count: 3, delay: 800 },
+      { type: EnemyType.DISK_FULL, count: 2, delay: 1000 },
+      { type: EnemyType.BLUE_SCREEN, count: 2, delay: 1200 },
+      { type: EnemyType.HOURGLASS, count: 1, delay: 1500 },
     ],
   },
   {
     number: 3,
     enemies: [
-      { type: EnemyType.CLOSED_ECOSYSTEM, count: 1, delay: 800 },
-      { type: EnemyType.VENDOR_LOCKIN, count: 1, delay: 1000 },
-      { type: EnemyType.ANNUAL_LICENSE, count: 2, delay: 600 },
-      { type: EnemyType.GOLIATH_BIGTECH, count: 1, delay: 2000 },
-      { type: EnemyType.FORCED_UPDATE, count: 2, delay: 500 },
+      { type: EnemyType.ACCESS_DENIED, count: 1, delay: 800 },
+      { type: EnemyType.VIRUS, count: 1, delay: 1000 },
+      { type: EnemyType.BLUE_SCREEN, count: 2, delay: 600 },
+      { type: EnemyType.RANSOMWARE, count: 1, delay: 2000 },
+      { type: EnemyType.DISK_FULL, count: 2, delay: 500 },
     ],
   },
 ];
@@ -109,12 +109,12 @@ export const DEFENSE_DESCRIPTIONS = {
 };
 
 export const ENEMY_DESCRIPTIONS = {
-  WINDOWS_EOL: 'Fin de support Windows. Rend les PC obsolètes.',
-  DRIVER_INCOMPATIBLE: 'Pilote incompatible. Bloque les fonctionnalités.',
-  FORCED_UPDATE: 'Mise à jour forcée. Force le renouvellement matériel.',
-  ANNUAL_LICENSE: 'Licence annuelle. Draine le budget de l\'école.',
-  CLOUD_SUBSCRIPTION: 'Abonnement cloud. Coût récurrent hors UE.',
-  CLOSED_ECOSYSTEM: 'Écosystème fermé. Empêche l\'interopérabilité.',
-  VENDOR_LOCKIN: 'Dépendance totale. Rend la sortie impossible.',
-  GOLIATH_BIGTECH: 'Boss final ! Combine toutes les menaces BigTech.',
+  BUG: 'Petit bug agaçant. Ralentit tout le système.',
+  ERROR_404: 'Page introuvable. Se perd dans le code.',
+  DISK_FULL: 'Disque plein. Bloque toutes les installations.',
+  BLUE_SCREEN: 'Écran bleu de la mort. Fait planter le PC.',
+  HOURGLASS: 'Application gelée. Curseur qui tourne à l\'infini.',
+  ACCESS_DENIED: 'Accès refusé. Bloque les permissions.',
+  VIRUS: 'Virus méchant. Infecte tout sur son passage.',
+  RANSOMWARE: 'Boss final ! Crypte toutes tes données.',
 };

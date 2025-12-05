@@ -4,6 +4,7 @@ import { Defense, DefenseType } from '../models/defense.model';
 import { Enemy, EnemyType } from '../models/enemy.model';
 import { Projectile } from '../models/game-state.model';
 import { GAME_CONFIG, ENEMY_PATH, COLORS } from '../utils/constants';
+import { ENEMY_IMAGES, DEFENSE_IMAGES, ImagePreloader } from '../utils/image-loader';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,21 @@ import { GAME_CONFIG, ENEMY_PATH, COLORS } from '../utils/constants';
 export class PixelRendererService {
   private ctx: CanvasRenderingContext2D | null = null;
   private canvas: HTMLCanvasElement | null = null;
+  private imagesLoaded = false;
+
+  constructor() {
+    // Précharger les images au démarrage
+    Promise.all([
+      ImagePreloader.preloadEnemyImages(),
+      ImagePreloader.preloadDefenseImages()
+    ]).then(() => {
+      this.imagesLoaded = true;
+      console.log('Images ennemis et défenses chargées avec succès');
+    }).catch(err => {
+      console.error('Erreur chargement images:', err);
+      this.imagesLoaded = false;
+    });
+  }
 
   initialize(canvasRef: ElementRef<HTMLCanvasElement>): void {
     this.canvas = canvasRef.nativeElement;
@@ -97,18 +113,28 @@ export class PixelRendererService {
     const x = defense.position.x - size / 2;
     const y = defense.position.y - size / 2;
 
-    // Draw base
-    this.ctx.fillStyle = this.getDefenseColor(defense.type);
-    this.ctx.fillRect(x, y, size, size);
+    // Essayer de charger l'image
+    const imagePath = this.getDefenseImagePath(defense.type);
+    const img = ImagePreloader.getImage(imagePath);
 
-    // Draw border
-    this.ctx.strokeStyle = COLORS.CYAN;
-    this.ctx.lineWidth = 2;
-    this.ctx.strokeRect(x, y, size, size);
+    if (img && img.complete && img.naturalWidth > 0) {
+      // Dessiner l'image si elle est complètement chargée
+      this.ctx.drawImage(img, x, y, size, size);
+    } else {
+      // Fallback : dessiner le carré coloré si l'image n'est pas disponible
+      // Draw base
+      this.ctx.fillStyle = this.getDefenseColor(defense.type);
+      this.ctx.fillRect(x, y, size, size);
 
-    // Draw icon (simple pixel art)
-    this.ctx.fillStyle = COLORS.BG;
-    this.drawDefenseIcon(defense.type, x + size / 2, y + size / 2);
+      // Draw border
+      this.ctx.strokeStyle = COLORS.CYAN;
+      this.ctx.lineWidth = 2;
+      this.ctx.strokeRect(x, y, size, size);
+
+      // Draw icon (simple pixel art)
+      this.ctx.fillStyle = COLORS.BG;
+      this.drawDefenseIcon(defense.type, x + size / 2, y + size / 2);
+    }
   }
 
   private drawDefenseIcon(type: DefenseType, x: number, y: number): void {
@@ -179,21 +205,38 @@ export class PixelRendererService {
     const x = enemy.position.x - size / 2;
     const y = enemy.position.y - size / 2;
 
-    // Draw enemy body
-    this.ctx.fillStyle = this.getEnemyColor(enemy.type);
-    this.ctx.fillRect(x, y, size, size);
+    // Essayer de charger l'image
+    const imagePath = this.getEnemyImagePath(enemy.type);
+    const img = ImagePreloader.getImage(imagePath);
 
-    // Draw border
-    this.ctx.strokeStyle = COLORS.WHITE;
-    this.ctx.lineWidth = 2;
-    this.ctx.strokeRect(x, y, size, size);
+    if (img && img.complete && img.naturalWidth > 0) {
+      // Dessiner l'image si elle est complètement chargée
+      this.ctx.drawImage(img, x, y, size, size);
+    } else {
+      // Fallback : dessiner le carré coloré si l'image n'est pas disponible
+      this.ctx.fillStyle = this.getEnemyColor(enemy.type);
+      this.ctx.fillRect(x, y, size, size);
 
-    // Draw health bar
+      // Draw border
+      this.ctx.strokeStyle = COLORS.WHITE;
+      this.ctx.lineWidth = 2;
+      this.ctx.strokeRect(x, y, size, size);
+
+      // Draw enemy icon
+      this.ctx.fillStyle = COLORS.BG;
+      this.drawEnemyIcon(enemy.type, enemy.position.x, enemy.position.y, size);
+    }
+
+    // Draw health bar (toujours affichée)
     this.drawHealthBar(enemy.position.x, enemy.position.y - size / 2 - 8, size, enemy.health, enemy.maxHealth);
+  }
 
-    // Draw enemy icon
-    this.ctx.fillStyle = COLORS.BG;
-    this.drawEnemyIcon(enemy.type, enemy.position.x, enemy.position.y, size);
+  private getEnemyImagePath(type: EnemyType): string {
+    return ENEMY_IMAGES[type];
+  }
+
+  private getDefenseImagePath(type: DefenseType): string {
+    return DEFENSE_IMAGES[type];
   }
 
   private drawEnemyIcon(type: EnemyType, x: number, y: number, size: number): void {
@@ -205,26 +248,22 @@ export class PixelRendererService {
     const iconSize = size * 0.5;
 
     switch (type) {
-      case EnemyType.WINDOWS_EOL:
-        // Windows logo
+      case EnemyType.BUG:
+        // Bug simple
         this.ctx.fillRect(-iconSize / 2, -iconSize / 2, iconSize / 2 - 2, iconSize / 2 - 2);
         this.ctx.fillRect(2, -iconSize / 2, iconSize / 2 - 2, iconSize / 2 - 2);
-        this.ctx.fillRect(-iconSize / 2, 2, iconSize / 2 - 2, iconSize / 2 - 2);
-        this.ctx.fillRect(2, 2, iconSize / 2 - 2, iconSize / 2 - 2);
         break;
-      case EnemyType.ANNUAL_LICENSE:
-        // Dollar sign
+      case EnemyType.BLUE_SCREEN:
+        // Ecran bleu
         this.ctx.font = `bold ${iconSize}px monospace`;
         this.ctx.textAlign = 'center';
         this.ctx.textBaseline = 'middle';
-        this.ctx.fillText('$', 0, 0);
+        this.ctx.fillText('BSOD', 0, 0);
         break;
-      case EnemyType.GOLIATH_BIGTECH:
-        // Crown
+      case EnemyType.RANSOMWARE:
+        // Boss - Lock
         this.ctx.fillRect(-iconSize / 2, 0, iconSize, iconSize / 3);
         this.ctx.fillRect(-iconSize / 2, -iconSize / 3, iconSize / 5, iconSize / 3);
-        this.ctx.fillRect(-iconSize / 6, -iconSize / 3, iconSize / 5, iconSize / 3);
-        this.ctx.fillRect(iconSize / 6, -iconSize / 3, iconSize / 5, iconSize / 3);
         break;
       default:
         // Generic warning symbol
@@ -238,18 +277,18 @@ export class PixelRendererService {
   }
 
   private getEnemySize(type: EnemyType): number {
-    return type === EnemyType.GOLIATH_BIGTECH ? 48 : 32;
+    return type === EnemyType.RANSOMWARE ? 48 : 32;
   }
 
   private getEnemyColor(type: EnemyType): string {
     switch (type) {
-      case EnemyType.GOLIATH_BIGTECH:
-        return '#ff00ff'; // Magenta vif
-      case EnemyType.ANNUAL_LICENSE:
-      case EnemyType.CLOUD_SUBSCRIPTION:
+      case EnemyType.RANSOMWARE:
+        return '#ff00ff'; // Magenta vif (Boss)
+      case EnemyType.BLUE_SCREEN:
+      case EnemyType.HOURGLASS:
         return '#ffff00'; // Jaune vif
-      case EnemyType.CLOSED_ECOSYSTEM:
-      case EnemyType.VENDOR_LOCKIN:
+      case EnemyType.VIRUS:
+      case EnemyType.ACCESS_DENIED:
         return '#ff0000'; // Rouge vif
       default:
         return COLORS.GRAY;
