@@ -30,3 +30,8 @@
     }
 }
 
+:host ::ng-deep .resource-game-window .window-content {
+  // This will scale down the component and its container
+  transform: scale(1);
+  transform-origin: top left; // To scale from the top-left corner
+}

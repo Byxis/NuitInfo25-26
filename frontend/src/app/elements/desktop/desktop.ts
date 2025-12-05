@@ -16,10 +16,10 @@ import { QuizComponent } from 'src/app/pages/quiz-component/quiz-component';
 import { Quizz } from 'src/app/pages/quizz/quizz';
 import { UserService } from '@users/user.service';
 import { ResourceGameComponent } from 'src/app/pages/resource-game/resource-game';
-
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-desktop',
-  imports: [TaskbarComponent, AppIconComponent, Window],
+  imports: [TaskbarComponent, AppIconComponent, Window,NgClass],
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss',
 })
@@ -30,8 +30,8 @@ export class DesktopComponent {
     { id: 'equipe', name: "L'Équipe.txt", icon: 'happy-file.png', type: 'txt', component: Equipe },
     { id: 'quiz', name: 'Quiz.exe', icon: 'happy-file.png', type: 'txt', component: Quizz },
     { id: 'tower', name: 'Tower Defense.exe',  icon: 'tower-defense-logo.png', type: 'txt', component: TowerDefenseComponent, },
-    { id: 'task', name: 'Task Manager.exe', icon: 'task.png', type: 'txt', component: TaskManager },
-    { id: 'resource', name: 'Resource Game.exe', icon: 'happy-file.png', type: 'txt', component: ResourceGameComponent }
+    { id: 'task', name: 'Task Manager.exe', icon: 'task.png', type: 'txt', component: TaskManager, },
+    { id: 'resource', name: 'Resource Game.exe', icon: 'happy-file.png', type: 'txt', component: ResourceGameComponent, windowClass: 'resource-game-window' }
   ];
   //{id: 'jeux', name: 'Jeux', icon: '', type: 'folder', component: FolderWindowComponent}
 
@@ -43,7 +43,7 @@ export class DesktopComponent {
     const alreadyOpen = this.openWindows.some((win) => win.id === app.id);
 
     if (alreadyOpen) return;
-    this.openWindows.push({ id: app.id, name: app.name, component: app.component });
+    this.openWindows.push({ id: app.id, name: app.name, component: app.component, windowClass: app.windowClass });
   }
 
   closeApp(win: any) {

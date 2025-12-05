@@ -7,4 +7,5 @@ export interface App {
     type: 'exe' | 'txt' | 'folder';
     component?: any;
     items?: FileItem[];
+    windowClass?: string;
 }
