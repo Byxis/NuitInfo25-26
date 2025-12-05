@@ -1,0 +1,37 @@
+<div class="defense-selector">
+  <h3 class="title">⚔️ Défenses NIRD</h3>
+  <div class="defenses-grid">
+    @for (defense of defenseTypes; track defense.type) {
+      <button
+        class="defense-card"
+        [class.selected]="isSelected(defense.type)"
+        [class.disabled]="!canAfford(defense.type)"
+        (click)="selectDefense(defense.type)"
+        [title]="defense.description"
+      >
+        <div class="defense-icon">{{ defense.icon }}</div>
+        <div class="defense-name">{{ defense.name }}</div>
+        <div class="defense-stats">
+          <div class="stat-item">
+            <span class="stat-icon">💰</span>
+            <span class="stat-text">{{ defense.cost }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">⚔️</span>
+            <span class="stat-text">{{ defense.damage }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🎯</span>
+            <span class="stat-text">{{ defense.range }}</span>
+          </div>
+        </div>
+        <div class="defense-description">{{ defense.description }}</div>
+      </button>
+    }
+  </div>
+  @if (gameState().selectedDefenseType) {
+    <div class="hint">
+      💡 Cliquez sur la grille pour placer votre défense
+    </div>
+  }
+</div>
