@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/router": "^21.0.3",
+    "router": "^2.2.0"
+  }
+}

@@ -6,7 +6,7 @@ const { Pool } = pkg
 const pool = new Pool({
     connectionString:
     process.env.DATABASE_URL ||
-    'postgres://secureapp:secureapp@localhost:5432/secureapp',
+    'postgres://secureapp:secureapp@localhost:5440/secureapp',
 });
 
 
