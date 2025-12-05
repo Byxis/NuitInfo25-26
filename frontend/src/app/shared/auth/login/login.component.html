@@ -1,37 +1,50 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title><h2>Login</h2></mat-card-title>
-    <mat-card-subtitle>Please enter your credentials</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="this.form" (submit)="this.submit()">
-      <br />
-      <mat-form-field appearance="outline">
-        <mat-label>Login</mat-label>
-        <input matInput formControlName="login" />
-        <mat-error align="end">Login is at least 5 characters</mat-error>
-      </mat-form-field>
-      <br />
+<div class="login-component" (click)="selectThisUser()">
 
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password" type="password" />
-        <mat-error align="end">Password is required</mat-error>
-      </mat-form-field>
-      <br />
+  <!-- Username always shown -->
+  <label class="username-label">{{ username() }}</label>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="this.form.invalid">
-        @if (isLoading()) {
-        <mat-icon>autorenew</mat-icon>
-        } @else {
-        <mat-icon>arrow_forward</mat-icon>
-        } @if (isLoading()) { Logging in... } @else { Login }
-      </button>
-    </form>
-  </mat-card-content>
-  <mat-card-footer>
-    @if (this.error()) {
-    <mat-error>Erreur: {{ this.error() }}</mat-error>
-    }
-  </mat-card-footer>
-</mat-card>
+  <!-- Show password form only if selected -->
+  @if (isSelected()) {
+
+    <div class="login-container">
+      <div class="login-content">
+        <form [formGroup]="form" (submit)="submit()">
+
+          <label>Password</label>
+          <input
+            class="password-input"
+            type="password"
+            formControlName="password"
+          />
+
+          @if (form.get('password')?.invalid && form.get('password')?.touched) {
+            <p class="error-text">Password is required</p>
+          }
+
+          <button
+            class="submit-button"
+            type="submit"
+            [disabled]="form.invalid"
+          >
+            @if (isLoading()) {
+              <mat-icon>autorenew</mat-icon>
+            } @else {
+              <mat-icon>arrow_forward</mat-icon>
+            }
+          </button>
+
+        </form>
+      </div>
+
+      @if (error()) {
+        <div class="error-footer">
+          <div class="error-text">Erreur: {{ error() }}</div>
+        </div>
+      }
+    </div>
+    <button class="cancel-button" type="button" (click)="onCancel($event)">
+    Cancel
+    </button>
+  }
+
+</div>
