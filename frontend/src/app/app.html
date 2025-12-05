@@ -9,6 +9,13 @@
         [routerLinkActiveOptions]="{ exact: true }"
         ><mat-icon>home</mat-icon>Home</a
       >
+      <a
+        class="nav-item"
+        routerLink="quizz"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><mat-icon>admin_panel_settings</mat-icon>Quizz</a
+      >
       } @if (this.authSvc.isAdmin()) {
       <a
         class="nav-item"
@@ -18,6 +25,7 @@
         ><mat-icon>admin_panel_settings</mat-icon>Admin</a
       >
       }
+
       <span class="spacer"></span>
       @if (authSvc.isLoggedIn()) {
       <button class="nav-item" mat-button id="right-nav" (click)="logout()">

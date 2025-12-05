@@ -140,3 +140,51 @@
         font-size: 0.9em;
     }
 }
+
+.goToQuiz {
+    /* Mise en page */
+    display: inline-block; /* S'adapte au contenu, mais permet les marges et le padding */
+    width: fit-content;
+    margin: 20px auto; /* Centre horizontalement (si le parent est un block et utilise text-align: center ou si on le place dans un conteneur flex/grid) */
+    
+    /* Style visuel */
+    padding: 10px 20px;
+    font-size: 1.05em;
+    font-weight: 600; /* Moins gras que 'bold' */
+    text-align: center;
+    text-transform: uppercase; /* Donne un côté plus "bouton d'action" */
+    
+    /* Couleurs et forme */
+    color: #ffffff; /* Texte blanc */
+    background-color: #007bff; /* Vert amical */
+    border: none;
+    border-radius: 6px; /* Coins arrondis */
+    box-shadow: 0 4px #007bff; /* Ombre discrète pour un effet 3D léger */
+    
+    /* Interactivité */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Effet au survol (hover) */
+.goToQuiz:hover {
+    background-color: #007bff; /* Vert légèrement plus clair */
+}
+
+/* Effet au clic (active) - L'effet 3D s'enfonce */
+.goToQuiz:active {
+    background-color: #007bff;
+    box-shadow: 0 2px #007bff; /* L'ombre devient plus petite */
+    transform: translateY(2px); /* Le bouton s'enfonce de 2px */
+}
+
+/* Responsivité de base pour les petits écrans */
+@media (max-width: 480px) {
+    .goToQuiz {
+        display: block; /* Prend toute la largeur disponible pour être plus facile à cliquer */
+        width: 90%; 
+        margin: 15px auto;
+        padding: 15px 0;
+        font-size: 1em;
+    }
+}
