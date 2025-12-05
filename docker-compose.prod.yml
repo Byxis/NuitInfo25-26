@@ -1,12 +1,12 @@
 services:
     db:
         image: postgres:16-alpine
-        container_name: secureapp_db_prod
+        container_name: segfault_db_prod
         restart: unless-stopped
         environment:
-            POSTGRES_USER: secureapp
-            POSTGRES_PASSWORD: secureapp
-            POSTGRES_DB: secureapp
+            POSTGRES_USER: segfault
+            POSTGRES_PASSWORD: segfault
+            POSTGRES_DB: segfault
         volumes:
             - db_data:/var/lib/postgresql/data
             - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -16,13 +16,13 @@ services:
         build:
             context: ./backend
             dockerfile: Dockerfile
-        container_name: secureapp_backend_prod
+        container_name: segfault_backend_prod
         restart: unless-stopped
         depends_on:
             - db
         environment:
             NODE_ENV: production
-            DATABASE_URL: postgresql://secureapp:secureapp@db:5432/secureapp
+            DATABASE_URL: postgresql://segfault:segfault@db:5432/segfault
             JWT_SECRET: "mon_secret_jwt_super_long_et_complexe"
             JWT_EXPIRATION: "15m"
             REFRESH_EXPIRATION: "7d"
@@ -37,7 +37,7 @@ services:
         build:
             context: ./frontend
             dockerfile: Dockerfile
-        container_name: secureapp_frontend_prod
+        container_name: segfault_frontend_prod
         restart: unless-stopped
         depends_on:
             - backend
@@ -47,7 +47,7 @@ services:
             - secure_net
     adminer:
         image: adminer:latest
-        container_name: secureapp_adminer_prod
+        container_name: segfault_adminer_prod
         restart: unless-stopped
         depends_on:
             - db
