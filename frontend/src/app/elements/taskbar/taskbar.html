@@ -1,10 +1,15 @@
 <div class="taskbar">
     <div class="taskbar-left">
-        WINDOWS
+        @if (userService.isGame2Finished()) {
+            <img src="logo-linux.png" height="32px" width="32px">
+        }
+        @else {
+            <img src="logo-windows.png" height="32px" width="32px">
+        }
     </div>
 
     <div class="taskbar-right">
-        <div class="datetime"> 
+        <div class="datetime" (click)="openSnake()"> 
             <span class="time"> {{time}} </span>
             <span class="date"> {{date}} </span>
         </div>

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@env/environment';
 import { catchError, of, tap } from 'rxjs';
 import { UserDto } from 'src/app/shared/types/user-dto';
@@ -12,6 +12,19 @@ export class UserService {
 
   readonly users = signal<UserDto[]>([]);
   readonly currentUser = signal<UserDto | null>(null);
+
+  readonly isGame1Finished = computed(
+    () => this.currentUser()?.hasFinishedGame1 ?? false
+  );
+  readonly isGame2Finished = computed(
+    () => this.currentUser()?.hasFinishedGame2 ?? false
+  );
+  readonly isGame3Finished = computed(
+    () => this.currentUser()?.hasFinishedGame3 ?? false
+  );
+  readonly isGame4Finished = computed(
+    () => this.currentUser()?.hasFinishedGame4 ?? false
+  );
 
   loadAll() {
     this.http

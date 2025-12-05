@@ -12,8 +12,6 @@ export class Window {
   title = input.required<string>()
   close = output()
   component = input.required<any>()
-  x = input.required<number>()
-  y = input.required<number>()
 
   onClose() {
     this.close.emit();
