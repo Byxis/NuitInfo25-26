@@ -1,0 +1,9 @@
+<div class="canvas-container">
+  <canvas
+    #gameCanvas
+    [width]="canvasWidth"
+    [height]="canvasHeight"
+    (click)="onCanvasClick($event)"
+    (mousemove)="onCanvasHover($event)"
+  ></canvas>
+</div>

@@ -1,0 +1,56 @@
+<div class="snake-game">
+  <div class="game-info">
+    <div>
+      <span class="terminal-user">user@snake</span>:<span class="terminal-path">~/score</span>$
+      {{ score }}
+    </div>
+  </div>
+  <div class="board-container">
+    <div class="board-top">+{{ '-'.repeat(gridSize * 2) }}+</div>
+    <div class="board-with-sides">
+      @for (row of grid; track rowIndex; let rowIndex = $index) {
+      <div class="board-row">
+        <span class="board-side">'</span>
+        @for (cell of row; track colIndex; let colIndex = $index) {
+        <div
+          class="cell"
+          [class.snake]="isSnake(rowIndex, colIndex)"
+          [class.snake-head]="isSnakeHead(rowIndex, colIndex)"
+          [class.food]="isFood(rowIndex, colIndex)"
+          [style.width.px]="tileSize"
+          [style.height.px]="tileSize"
+        >
+          @if (isSnakeHead(rowIndex, colIndex)) { + } @else if (isSnakeBottom(rowIndex, colIndex)) {
+          - }@else if (isSnake(rowIndex, colIndex)) { # } @else if (isFood(rowIndex, colIndex)) { O
+          }
+        </div>
+        }
+        <span class="board-side">'</span>
+      </div>
+      }
+    </div>
+    <div class="board-bottom">+{{ '-'.repeat(gridSize * 2) }}+</div>
+  </div>
+
+  @if (gameOverMessage) {
+  <div class="terminal-prompt">
+    <span class="terminal-user">user@snake</span>:<span class="terminal-path">~</span>$
+    <div class="game-over-message">{{ gameOverMessage }}</div>
+  </div>
+  <div class="terminal-prompt">
+    <span class="terminal-user">user@snake</span>:<span class="terminal-path">~</span>$ Available
+    commands: start, exit
+  </div>
+  <div class="terminal-prompt">
+    <span class="terminal-user">user@snake</span>:<span class="terminal-path">~</span>$
+    <input
+      #terminalInputField
+      type="text"
+      class="terminal-input"
+      [(ngModel)]="terminalInput"
+      (keydown)="handleTerminalCommand($event)"
+      autofocus
+    />
+  </div>
+  }
+</div>
