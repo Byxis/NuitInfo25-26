@@ -1,0 +1,5 @@
+@if (!bootDone()) {
+  <app-bios-anim-windows (finished)="onBootFinished($event)" />
+} @else {
+  <home-page/>
+}

@@ -1,1 +1,18 @@
-<login />
+@for (u of usernames; track u) {
+    @if (selectedUsername() === null || selectedUsername() === u) {
+        <login
+        [username]="u"
+        [selected]="selectedUsername()"
+        (select)="selectUser($event)"
+        (clear)="selectedUsername.set(null)"
+        />
+    }
+}
+@if (selectedUsername() === null || selectedUsername() === registerKey) {
+<app-register-page
+    [key]="registerKey"
+    [selected]="selectedUsername()"
+    (selectRegister)="selectUser(registerKey)"
+    (clear)="selectedUsername.set(null)"
+/>
+}

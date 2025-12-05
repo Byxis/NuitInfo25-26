@@ -1,0 +1,142 @@
+.screen {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  margin: 40px auto;
+  background: radial-gradient(circle at top, #222 0, #000 60%);
+  border: 8px solid #111;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #0ff;
+  font-family: 'Source Code Pro', monospace, 'Courier New', monospace;
+  font-size: 14px;
+}
+
+/* CRT scanline overlay */
+.scanline {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 100% 3px;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bios,
+.boot-log,
+.ubuntu-desktop {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
+
+/* BIOS style */
+.bios {
+  color: #0ff;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.7);
+}
+
+.bios-header {
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.bios-body p {
+  margin: 4px 0;
+}
+
+.bios-press-key {
+  margin-top: 16px;
+}
+
+.bios-bottom {
+  margin-top: 20px;
+}
+
+/* Boot log style */
+.boot-log {
+  color: #8f8;
+}
+
+.ubuntu-logo {
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #ffa500;
+}
+
+.boot-lines {
+  height: 340px;
+  overflow: hidden;
+}
+
+.boot-line {
+  font-size: 13px;
+  margin-bottom: 2px;
+  animation: boot-line 0.2s ease-out;
+}
+
+@keyframes boot-line {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.boot-progress {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.boot-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.boot-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffa500, #ff4500);
+  transition: width 0.25s linear;
+}
+
+/* Ubuntu "desktop" */
+.ubuntu-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #eee;
+}
+
+.ubuntu-logo-big {
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffa500;
+  margin-bottom: 10px;
+}
+
+.ubuntu-text {
+  font-size: 16px;
+  color: #ccc;
+}
