@@ -12,6 +12,7 @@ import { SnakeComponent } from 'src/app/pages/snake/snake';
 import { TowerDefenseComponent } from 'src/app/pages/tower-defense/tower-defense.component';
 import { TaskManager } from 'src/app/pages/task-manager/task-manager';
 import { LaserBeamComponent } from 'src/app/pages/laser-game/laser-beam/laser-beam';
+import { Quizz } from 'src/app/pages/quizz/quizz';
 
 @Component({
   selector: 'app-desktop',
@@ -25,6 +26,7 @@ export class DesktopComponent {
     { id: 'credits', name: 'Crédits', icon: 'file.png', type: 'txt', component: Credits },
     { id: 'equipe', name: "L'Équipe", icon: 'file.png', type: 'txt', component: Equipe },
     { id: 'snake', name: 'Snake.exe', icon: 'file.png', type: 'txt', component: SnakeComponent },
+    { id: 'quizz', name: 'Quizz.exe', icon: 'file.png', type: 'txt', component: Quizz },
     {
       id: 'tower',
       name: 'Tower Defense.exe',
