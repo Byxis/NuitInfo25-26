@@ -1,0 +1,20 @@
+:host {
+  position: fixed;
+  width: 4px;
+  height: 20px;
+  background-color: var(--mat-sys-tertiary);
+  box-shadow: 0 0 10px var(--mat-sys-tertiary);
+  border-radius: 2px;
+  z-index: 999;
+  transform: translateX(-50%);
+  animation: shoot-up 1s linear forwards;
+}
+
+@keyframes shoot-up {
+  from {
+    transform: translate(-50%, 0);
+  }
+  to {
+    transform: translate(-50%, -100vh);
+  }
+}
