@@ -16,10 +16,11 @@ import { QuizComponent } from 'src/app/pages/quiz-component/quiz-component';
 import { Quizz } from 'src/app/pages/quizz/quizz';
 import { UserService } from '@users/user.service';
 import { ResourceGameComponent } from 'src/app/pages/resource-game/resource-game';
+import { ChatbotComponent } from 'src/app/shared/chatbot/chatbot-component/chatbot-component';
 
 @Component({
   selector: 'app-desktop',
-  imports: [TaskbarComponent, AppIconComponent, Window],
+  imports: [TaskbarComponent, AppIconComponent, Window, ChatbotComponent],
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss',
 })

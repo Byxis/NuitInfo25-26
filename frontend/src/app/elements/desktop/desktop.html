@@ -10,8 +10,7 @@
                 <app-window [component]="win.component" [title]="win.name" (close)="closeApp(win)" > </app-window>
             }
 
-        </div>
-
-        <app-taskbar (openSnakeO)="openApp(this.snake)"></app-taskbar>
+    <app-chatbot-component></app-chatbot-component>
     </div>
+    <app-taskbar (openSnakeO)="openApp(this.snake)"></app-taskbar>
 </div>
