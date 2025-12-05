@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal, computed } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal, computed, output } from '@angular/core';
 
 @Component({
   selector: 'app-bios-anim',
@@ -10,6 +10,7 @@ import { Component, OnDestroy, OnInit, signal, computed } from '@angular/core';
 
 export class BiosAnim implements OnDestroy, OnInit{
   readonly phase = signal<Phase>('bios');
+  readonly finished = output<boolean>();
 
   readonly bootLines = [
     '[    0.000000] Booting Linux kernel ...',
@@ -41,8 +42,8 @@ export class BiosAnim implements OnDestroy, OnInit{
   }
 
   private startBootAnimation() {
-    const baseDelay = 500; // base delay in ms
-    const jitter = 300;    // ±300ms randomness
+    const baseDelay = 400; // base delay in ms
+    const jitter = 200;    // ±300ms randomness
     let index = 0;
 
     const scheduleNext = () => {
@@ -60,6 +61,11 @@ export class BiosAnim implements OnDestroy, OnInit{
           // Fin du boot log → Ubuntu
           this.ubuntuTimeoutId = setTimeout(() => {
             this.phase.set('ubuntu');
+
+            setTimeout(() => {
+              this.finished.emit(true);
+            }, 3000);
+
           }, 3000);
         }
       }, delay);
