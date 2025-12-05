@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { TaskbarComponent } from '../taskbar/taskbar';
 import { FileItem } from '../file-item';
 import { App } from '../app-model';
@@ -20,7 +21,7 @@ import { ChatbotComponent } from 'src/app/shared/chatbot/chatbot-component/chatb
 
 @Component({
   selector: 'app-desktop',
-  imports: [TaskbarComponent, AppIconComponent, Window, ChatbotComponent],
+  imports: [TaskbarComponent, AppIconComponent, Window, NgClass, ChatbotComponent],
   templateUrl: './desktop.html',
   styleUrl: './desktop.scss',
 })
