@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:host {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+.game-container {
+    display: flex; /* 3-Column Layout */
+    width: 100%;
+    height: 100%;
+    font-family: 'VT323', monospace;
+    overflow: hidden;
+    transition: background 1s ease;
+
+    /* --- THEMES --- */
+    &.theme-windows {
+        /* Windows 10/11 Blue Theme */
+        background: linear-gradient(135deg, #0078d7 0%, #00a4ef 100%);
+        --panel-bg: rgba(255, 255, 255, 0.85);
+        --text-color: #000;
+        --accent: #0078d7;
+        --grid-line: rgba(0,0,0,0.2);
+    }
+
+    &.theme-linux {
+        /* Ubuntu Purple/Orange Theme */
+        background: linear-gradient(135deg, #772953 0%, #E95420 100%);
+        --panel-bg: rgba(30, 30, 30, 0.85);
+        --text-color: #fff;
+        --accent: #E95420; /* Ubuntu Orange */
+        --grid-line: rgba(255,255,255,0.2);
+    }
+}
+
+/* --- SIDE PANELS (Left & Right) --- */
+.side-panel {
+    flex: 0 0 250px; /* Fixed width */
+    background: var(--panel-bg);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 10;
+    color: var(--text-color);
+
+    h2 {
+        text-align: center;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+/* --- LEFT PANEL: PROGRESS --- */
+.left-panel {
+    align-items: center;
+
+    .progress-vertical-container {
+        flex-grow: 1;
+        width: 60px;
+        background: rgba(0,0,0,0.1);
+        border-radius: 30px;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--accent);
+        margin-bottom: 20px;
+
+        .progress-track {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: flex-end; /* Fill from bottom */
+        }
+
+        .progress-fill {
+            width: 100%;
+            background: var(--accent);
+            transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+
+            hr { border-color: var(--text-color); width: 100%; }
+        }
+    }
+
+    .status-badge {
+        background: red;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        text-align: center;
+
+        .blinking { animation: blink 1s infinite; font-weight: bold; }
+    }
+}
+
+/* --- RIGHT PANEL: STATUS --- */
+.right-panel {
+    .stat-box {
+        margin-bottom: 20px;
+        label { display: block; font-size: 0.8rem; margin-bottom: 5px; opacity: 0.8; }
+        .val { font-size: 0.9rem; font-weight: bold; float: right; margin-top: -15px; }
+
+        .bar-frame {
+            height: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+
+            .bar-fill {
+                height: 100%;
+                transition: width 0.3s;
+                &.cpu { background: #00d2ff; }
+                &.ram { background: #00ff9d; }
+                &.hdd { background: #ff4d4d; }
+            }
+        }
+    }
+
+    .console-log {
+        margin-top: auto;
+        padding: 10px;
+        background: rgba(0,0,0,0.8);
+        color: #0f0;
+        font-family: 'VT323', monospace;
+        font-size: 1.2rem;
+        border-radius: 4px;
+        height: 100px;
+    }
+}
+
+/* --- CENTER AREA --- */
+.center-area {
+    flex: 1;
+    display: flex;
+    flex-direction: row; /* CHANGED: Row instead of Column */
+    position: relative;
+    justify-content: flex-start;
+    align-items: stretch; /* Stretch children to full height */
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.grid-wrapper {
+    flex: 1; /* Takes up remaining space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 3px;
+    /* Isometric view */
+    transform: rotateX(50deg) rotateZ(-45deg);
+    transform-style: preserve-3d;
+    background: rgba(0,0,0,0.2);
+    border: 5px solid var(--grid-line);
+    padding: 10px;
+    transition: transform 0.5s;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.3);
+}
+
+.grid-cell {
+    width: 40px; height: 40px;
+    background: var(--grid-line);
+    cursor: pointer;
+    &:hover { background: var(--accent); opacity: 0.6; }
+}
+
+.placed-building {
+    z-index: 5;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.4);
+    transform: translateZ(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+
+    .placed-logo {
+        width: 70%;
+        transform: rotateZ(45deg) rotateX(-50deg) translateY(-15px) scale(1.5);
+    }
+}
+
+/* --- DECK --- */
+.deck-container {
+    width: 130px; /* Fixed width for the sidebar */
+    height: 100%; /* Full height */
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column; /* Container aligns contents vertically */
+    justify-content: flex-start;
+    padding: 0;
+    z-index: 20;
+    border-left: 2px solid var(--grid-line); /* Separator line */
+    border-top: none; /* Remove previous top border */
+}
+
+.deck {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    gap: 15px;
+    overflow-y: auto; /* Scroll vertically */
+    overflow-x: hidden; /* Hide horizontal scroll */
+    padding: 20px 10px;
+    width: 100%;
+    align-items: center;
+
+    /* Custom Scrollbar styling for the deck */
+    &::-webkit-scrollbar { width: 5px; }
+    &::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    &::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+}
+
+.card {
+    width: 100%; /* Fill the column width */
+    max-width: 90px;
+    height: 110px;
+    margin: 0; /* Remove horizontal margins */
+    flex-shrink: 0; /* Prevent squishing */
+
+    background: #333;
+    border: 2px solid #555;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+
+    &.selected {
+        border-color: var(--accent);
+        transform: translateX(-5px); /* Move slightly left when selected */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    &.installed {
+        opacity: 0.5;
+        filter: grayscale(1);
+        pointer-events: none;
+    }
+
+    img { width: 40px; height: 40px; margin-bottom: 5px; }
+    .name { font-size: 0.75rem; text-align: center; line-height: 1.1; }
+}
+/* --- OVERLAYS --- */
+.bsod-screen {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+    background: #0000aa; color: white;
+    z-index: 999;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    h1 { font-size: 8rem; margin: 0; }
+    button { margin-top: 30px; padding: 15px 30px; border: none; font-size: 1.2rem; cursor: pointer; }
+}
+
+.win-screen {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(0,0,0,0.85); color: #0f0;
+    z-index: 999;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    font-family: 'VT323', monospace;
+    .penguin { font-size: 5rem; margin: 20px; }
+    button { padding: 10px 20px; background: transparent; border: 2px solid #0f0; color: #0f0; cursor: pointer; font-size: 1.5rem; &:hover{ background: #0f0; color: #000; }}
+}
+
+.update-modal {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.6); z-index: 800;
+    display: flex; justify-content: center; align-items: center;
+
+    .win-window {
+        width: 300px; background: #fff; border: 1px solid #0078d7; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        .win-header { background: #0078d7; color: white; padding: 8px; }
+        .win-body { padding: 20px; text-align: center; color: black; }
+        .spinner { border: 4px solid #eee; border-top: 4px solid #0078d7; border-radius: 50%; width: 30px; height: 30px; animation: blink 1s linear infinite; margin: 0 auto 10px;}
+    }
+}
+
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }

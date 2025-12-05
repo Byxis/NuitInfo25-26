@@ -1,0 +1,89 @@
+<div class="tower-defense-container">
+  <header class="header">
+    <h1 class="title">
+      <span class="icon">🏛️</span>
+      Village NIRD - La Résistance Numérique
+      <span class="icon">🐧</span>
+    </h1>
+    <p class="subtitle">
+      Défendez votre établissement contre les menaces BigTech ! 
+      Installez Linux, reconditionnez, et gagnez votre autonomie numérique.
+    </p>
+  </header>
+
+  @if (gameState().status !== 'MENU') {
+    <div class="game-layout">
+      <div class="left-panel">
+        <app-defense-selector />
+      </div>
+
+      <div class="center-panel">
+        <app-game-ui />
+        <app-game-canvas />
+      </div>
+    </div>
+  }
+
+  @if (gameState().status === 'MENU') {
+    <div class="menu-screen">
+      <div class="menu-content">
+      <div class="logo">🐧</div>
+      <h2 class="menu-title">Bienvenue dans la Résistance NIRD !</h2>
+      <p class="menu-description">
+        Face à l'empire numérique des BigTech, votre mission est de protéger votre établissement 
+        en adoptant un <strong>Numérique Inclusif, Responsable et Durable</strong>.
+      </p>
+      
+      <div class="how-to-play">
+        <h3>🎮 Comment jouer ?</h3>
+        <ul>
+          <li>🖱️ <strong>Sélectionnez une défense</strong> dans le panneau de gauche</li>
+          <li>📍 <strong>Placez-la sur la grille</strong> en cliquant sur une case vide</li>
+          <li>⚔️ <strong>Vos défenses attaquent automatiquement</strong> les menaces BigTech</li>
+          <li>🎯 <strong>Objectif :</strong> Survivre aux 3 vagues sans perdre toutes vos vies</li>
+        </ul>
+      </div>
+
+      <div class="game-info">
+        <div class="info-card">
+          <div class="info-icon">💰</div>
+          <div class="info-text">
+            <strong>NIRD Points</strong>
+            <span>Monnaie pour placer des défenses</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">❤️</div>
+          <div class="info-text">
+            <strong>Vies</strong>
+            <span>Perdues si un ennemi atteint la fin</span>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🌊</div>
+          <div class="info-text">
+            <strong>3 Vagues</strong>
+            <span>Difficulté croissante + Boss final</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-start" (click)="startGame()">
+        🚀 Lancer la Résistance
+      </button>
+
+      <div class="nird-info">
+        <p>
+          Ce jeu illustre la démarche NIRD : adopter progressivement Linux, 
+          reconditionner le matériel, et gagner en autonomie face aux BigTech.
+        </p>
+        <a href="https://nird.forge.apps.education.fr/" target="_blank" class="learn-more">
+          📚 En savoir plus sur NIRD →
+        </a>
+      </div>
+      </div>
+    </div>
+  }
+
+  <app-victory-screen />
+</div>

@@ -1,0 +1,8 @@
+<div class="game-overlay"></div>
+
+<div class="game-info">
+  <div>Score: {{ score }}</div>
+  <div>Time: {{ timeLeft }}</div>
+</div>
+
+<div class="ship" [style.left.px]="shipPosition.x" [style.top.px]="shipPosition.y"></div>

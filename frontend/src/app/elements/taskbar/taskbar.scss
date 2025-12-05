@@ -1,0 +1,26 @@
+.taskbar {
+    height: 45px;
+    background: #202020cc;
+    justify-content: space-between;
+    backdrop-filter: blur(8px); // Blur
+    display: flex; // Séparés
+    align-items: center; // centre niveau hauteur
+}
+
+.datetime {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    .time {
+        font-size: 14px;
+        font-family: 'Press Start 2P';
+    }
+
+    .date {
+        font-size: 14px;
+        font-family: 'Press Start 2P';
+    }
+
+}
+
