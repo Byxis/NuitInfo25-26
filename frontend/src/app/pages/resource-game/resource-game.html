@@ -1,3 +1,4 @@
+@if (!playBiosAnim()) {
 <div class="game-container" *ngIf="gameState"
      [ngClass]="gameState.os === 'windows' ? 'theme-windows' : 'theme-linux'">
 
@@ -115,3 +116,6 @@
   </div>
 
 </div>
+} @else {
+  <app-bios-anim (finished)="playBiosAnim.set(false)"></app-bios-anim>
+}
