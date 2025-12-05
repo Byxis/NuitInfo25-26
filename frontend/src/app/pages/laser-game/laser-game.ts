@@ -43,10 +43,12 @@ export class LaserGame implements OnDestroy {
     // Initialize the audio object and pre-load the sound file.
     // Make sure you have this sound file in the specified path.
     this.shootSound = new Audio('exf.wav');
+    this.shootSound.volume = 0.1;
     this.shootSound.load();
 
     // Initialize explosion sound
     this.explosionSound = new Audio('exp.wav'); // Example path
+    this.explosionSound.volume = 0.1;
     this.explosionSound.load();
   }
 
