@@ -2,6 +2,7 @@
   <div class="overlay"></div>
   <div class="modal">
     <div class="header" [class.victory]="gameState().status === 'VICTORY'" [class.defeat]="gameState().status === 'DEFEAT'">
+      <button class="close-btn" (click)="closeVictoryScreen()">✕</button>
       <h1 class="title">{{ gameState().status === 'VICTORY' ? '🎉 VICTOIRE !' : '💀 DÉFAITE' }}</h1>
       <p class="subtitle" *ngIf="gameState().status === 'VICTORY'">
         Le Village NIRD résiste aux BigTech ! 🐧

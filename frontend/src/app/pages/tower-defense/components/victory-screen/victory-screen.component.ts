@@ -79,4 +79,8 @@ export class VictoryScreenComponent {
   learnMore(): void {
     window.open('https://nird.forge.apps.education.fr/', '_blank');
   }
+
+  closeVictoryScreen(): void {
+    this.gameEngine.startGame();
+  }
 }
