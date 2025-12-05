@@ -1,0 +1,10 @@
+<div class="window" cdkDrag>
+    <div class="titlebar" cdkDragHandle>
+        {{title()}}
+        <button class="close-btn" (click)="onClose()">x</button>
+    </div>
+    
+    <div class="window-content">
+        <ng-container *ngComponentOutlet="component()"></ng-container>
+    </div>
+</div>

@@ -1,37 +1,53 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title><h2>Login</h2></mat-card-title>
-    <mat-card-subtitle>Please enter your credentials</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="this.form" (submit)="this.submit()">
-      <br />
-      <mat-form-field appearance="outline">
-        <mat-label>Login</mat-label>
-        <input matInput formControlName="login" />
-        <mat-error align="end">Login is at least 5 characters</mat-error>
-      </mat-form-field>
-      <br />
+<div
+  class="login-component"
+  [class.not-selected]="!isSelected()"
+  [class.selected]="isSelected()"
+  (click)="selectThisUser()"
+>
+  @if (!isSelected()) {
+  <!-- Vue miniature dans la liste -->
+  <div class="user-avatar">
+    {{ username().charAt(0).toUpperCase() }}
+  </div>
+  <span class="username-label">{{ username() }}</span>
+  } @else {
+  <!-- Vue agrandie au centre -->
+  <div class="user-avatar-large">
+    {{ username().charAt(0).toUpperCase() }}
+  </div>
+  <label class="username-label">{{ username() }}</label>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password" type="password" />
-        <mat-error align="end">Password is required</mat-error>
-      </mat-form-field>
-      <br />
+  <div class="login-container">
+    <div class="login-content">
+      <form [formGroup]="form" (submit)="submit()">
+        <input
+          class="password-input"
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          autocomplete="current-password"
+        />
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="this.form.invalid">
-        @if (isLoading()) {
-        <mat-icon>autorenew</mat-icon>
-        } @else {
-        <mat-icon>arrow_forward</mat-icon>
-        } @if (isLoading()) { Logging in... } @else { Login }
-      </button>
-    </form>
-  </mat-card-content>
-  <mat-card-footer>
-    @if (this.error()) {
-    <mat-error>Erreur: {{ this.error() }}</mat-error>
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+        <p class="error-text">Password is required</p>
+        }
+
+        <button class="submit-button" type="submit" [disabled]="form.invalid">
+          @if (isLoading()) {
+          <mat-icon>autorenew</mat-icon>
+          } @else {
+          <mat-icon>arrow_forward</mat-icon>
+          }
+        </button>
+      </form>
+    </div>
+
+    @if (error()) {
+    <div class="error-footer">
+      <div class="error-text">{{ error() }}</div>
+    </div>
     }
-  </mat-card-footer>
-</mat-card>
+  </div>
+  <button class="cancel-button" type="button" (click)="onCancel($event)"></button>
+  }
+</div>

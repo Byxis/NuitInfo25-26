@@ -1,0 +1,242 @@
+/* VARIABLES - Pour faciliter les changements de couleur */
+$color-bg-dark: #1e293b;
+$color-card-dark: #334155;
+$color-primary: #3b82f6;
+$color-secondary: #34d399;
+$color-error: #ef4444;
+$color-text-light: #f8fafc;
+$color-text-faded: #94a3b8;
+
+.quiz-container {
+    min-height: 100vh;
+    background: $color-bg-dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.quiz-card {
+    background-color: $color-card-dark;
+    border-radius: 12px; // Réduit à 12px
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); 
+    padding: 2rem; // Réduit à 2rem (était 2.5rem)
+    max-width: 600px; // Réduit la largeur maximale (était 750px)
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+
+    &.finished {
+        text-align: center;
+        max-width: 450px; // Réduit la taille de l'écran de fin
+        padding: 2.5rem 2rem;
+    }
+}
+
+// --- En-tête (Score et Progression) ---
+.header {
+    margin-bottom: 1.5rem; // Réduit l'espace
+}
+
+.header-info {
+    // Pas de changement ici
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem; // Réduit l'espace
+
+    .question-number {
+        color: $color-primary;
+        font-weight: 700;
+        font-size: 1em; // Légèrement réduit
+    }
+
+    .score {
+        color: $color-secondary;
+        font-weight: 700;
+        font-size: 1em; // Légèrement réduit
+    }
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #475569;
+    border-radius: 9999px;
+    height: 8px; // Réduit l'épaisseur (était 10px)
+    overflow: hidden;
+}
+
+.progress-fill {
+    background-color: $color-primary;
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+// --- Question et Enjeu ---
+.question-info {
+    margin-bottom: 1.25rem;
+}
+
+.composant {
+    font-size: 1.5rem; // Réduit (était 1.75rem)
+    font-weight: bold;
+    color: $color-text-light;
+    margin-bottom: 0.25rem;
+}
+
+.enjeu {
+    color: $color-text-faded;
+    font-style: italic;
+    font-size: 0.95em;
+    padding-left: 5px;
+    border-left: 3px solid $color-primary;
+}
+
+// Question
+.question-box {
+    background-color: #1f2937;
+    border-radius: 10px; // Légèrement réduit
+    padding: 1.25rem; // Réduit
+    margin-bottom: 1.5rem; // Réduit
+    border: 1px solid #374151;
+}
+
+.question-text {
+    font-size: 1.15rem; // Réduit (était 1.25rem)
+    color: $color-text-light;
+    line-height: 1.5; // Légèrement réduit
+    margin: 0;
+}
+
+// --- Zone de Réponse QCM (Options Cliquables) ---
+.answer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; // Réduit l'espace entre les options
+}
+
+.qcm-options {
+    gap: 0.6rem;
+}
+
+.qcm-option-button {
+    display: block;
+    background-color: #374151;
+    color: $color-text-light;
+    border: 2px solid #475569;
+    border-radius: 8px;
+    padding: 0.8rem 1.1rem; // Réduit le padding
+    font-size: 1rem; // Réduit légèrement
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left; 
+    user-select: none;
+    
+    &:hover:not(.selected) {
+        background-color: #475569;
+        border-color: #64748b;
+        transform: translateY(-1px); // Soulèvement réduit
+    }
+
+    &.selected {
+        border-color: $color-primary;
+        background-color: #1e40af;
+        font-weight: bold;
+        box-shadow: 0 0 8px rgba(59, 130, 246, 0.4); 
+    }
+}
+
+// --- Bouton Principal (Valider/Suivant) ---
+.btn {
+    width: 100%;
+    font-weight: 700;
+    padding: 0.9rem 1.5rem; // Réduit le padding
+    border-radius: 8px; // Réduit
+    border: none;
+    cursor: pointer;
+    font-size: 1.05rem; // Réduit
+    transition: all 0.3s ease;
+    
+    // ... (Le reste des styles du bouton primaire ne change pas, juste les dimensions)
+}
+
+.mt-4 {
+    margin-top: 1.2rem; // Réduit la marge
+}
+
+// --- Écran de fin ---
+.title {
+    font-size: 2rem; // Réduit (était 2.25rem)
+    font-weight: bold;
+    color: $color-primary;
+    margin-bottom: 0.75rem;
+}
+
+.score-display {
+    font-size: 4rem; // Réduit (était 5rem)
+    font-weight: bold;
+    color: $color-text-light;
+    margin-bottom: 0.75rem;
+}
+
+.result-message {
+    font-size: 1.2rem; // Réduit (était 1.4rem)
+    color: $color-text-faded;
+    margin-bottom: 1.5rem;
+}
+
+// --- Responsive (Mobile First) ---
+// Les media queries ont été ajustées pour refléter la nouvelle taille de base.
+
+// Mobile (jusqu'à 768px)
+@media (max-width: 768px) {
+    .quiz-card {
+        padding: 1.25rem; // Réduit légèrement
+        border-radius: 10px;
+    }
+
+    .composant {
+        font-size: 1.4rem;
+    }
+
+    .question-box {
+        padding: 0.9rem;
+    }
+
+    .question-text {
+        font-size: 1rem;
+    }
+
+    .qcm-option-button {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.9rem;
+    }
+
+    .score-display {
+        font-size: 3.5rem;
+    }
+}
+
+// Très petits écrans (jusqu'à 480px)
+@media (max-width: 480px) {
+    .quiz-container {
+        padding: 10px;
+    }
+
+    .quiz-card {
+        padding: 0.8rem;
+    }
+
+    .composant {
+        font-size: 1.15rem;
+    }
+
+    .enjeu {
+        font-size: 0.85rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+}

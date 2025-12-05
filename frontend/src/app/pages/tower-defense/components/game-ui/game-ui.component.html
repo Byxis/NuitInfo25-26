@@ -1,0 +1,50 @@
+<div class="game-ui">
+  <!-- Top Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-icon">🐧</span>
+      <span class="stat-value">{{ gameState().stats.nirdPoints }}</span>
+      <span class="stat-label">NIRD Points</span>
+    </div>
+    <div class="stat">
+      <span class="stat-icon">❤️</span>
+      <span class="stat-value">{{ gameState().stats.lives }}</span>
+      <span class="stat-label">Vies</span>
+    </div>
+    <div class="stat">
+      <span class="stat-icon">🌊</span>
+      <span class="stat-value">{{ gameState().stats.currentWave }}/{{ gameState().stats.totalWaves }}</span>
+      <span class="stat-label">Vague</span>
+    </div>
+    <div class="stat">
+      <span class="stat-icon">💀</span>
+      <span class="stat-value">{{ gameState().stats.enemiesKilled }}</span>
+      <span class="stat-label">Vaincus</span>
+    </div>
+  </div>
+
+  <!-- Control Buttons -->
+  <div class="controls">
+    <button 
+      *ngIf="gameState().status === 'MENU'"
+      (click)="startGame()"
+      class="btn btn-primary"
+    >
+      🎮 Démarrer la Résistance
+    </button>
+    <button 
+      *ngIf="gameState().status === 'PLAYING'"
+      (click)="pauseGame()"
+      class="btn btn-secondary"
+    >
+      ⏸️ Pause
+    </button>
+    <button 
+      *ngIf="gameState().status === 'PAUSED'"
+      (click)="resumeGame()"
+      class="btn btn-primary"
+    >
+      ▶️ Reprendre
+    </button>
+  </div>
+</div>

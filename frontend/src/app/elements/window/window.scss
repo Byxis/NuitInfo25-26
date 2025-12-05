@@ -1,0 +1,39 @@
+.window {
+    position: absolute;
+    background: #222;
+    border: 2px solid #555;
+    font-family: 'Press Start 2P', monospace;
+    position: relative;
+    max-width: 70vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    top: 5%;
+    left: 10%;
+
+    .titlebar {
+        height: 30px;
+        background: #444;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: move;
+        flex-shrink: 0;
+        
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+
+    .window-content {
+        flex: 1;
+        padding: 8px;
+        overflow: auto;
+        background: #1a1a1a;
+        min-height: 0;
+    }
+}

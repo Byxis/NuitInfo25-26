@@ -1,0 +1,12 @@
+<!-- Game UI -->
+<div class="laser-game-ui">
+  @if (!isGameActive){
+  <button mat-fab color="primary" class="play-button" (click)="startGame()">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  }
+
+  @if(isGameActive){
+    <app-player-ship (shoot)="onShoot($event)" [score]="score" [timeLeft]="timeLeft"></app-player-ship>
+  }
+</div>

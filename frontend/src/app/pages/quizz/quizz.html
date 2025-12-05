@@ -1,0 +1,71 @@
+
+@if (PcVisible) {
+    <div class="image-container">
+    <img class="computer-picture" src="computer.jpg">
+        <div class="invisible-button-MB" (click)="selectComponent(ComponentKey.MB)"></div>
+        <div class="invisible-button-alim" (click)="selectComponent(ComponentKey.PSU)"></div>
+        <div class="invisible-button-box" (click)="selectComponent(ComponentKey.BOX)"></div>
+        <div class="invisible-button-CPU" (click)="selectComponent(ComponentKey.CPU)"></div>
+        <div class="invisible-button-RAM" (click)="selectComponent(ComponentKey.RAM)"></div>
+        <div class="invisible-button-Disk" (click)="selectComponent(ComponentKey.DISK)"></div>
+        <div class="invisible-button-GPU" (click)="selectComponent(ComponentKey.GPU)"></div>
+    </div>
+    <button class="goToQuiz" (click)="goToQuiz()">Aller au quiz</button>
+    @switch (selectedComponent()) {
+        @case (ComponentKey.BOX) {
+            <div class="info-text-box">
+                <h1>{{this.box.nom}}</h1>
+                <p>Représente la **{{this.box.enjeuNird}}**</p>
+                <p>{{this.box.explication}}</p>
+            </div>
+        }
+        @case (ComponentKey.MB) {
+            <div class="info-text-box">
+                <h1>{{this.MotherBoard.nom}}</h1>
+                <p>Représente la **{{this.MotherBoard.enjeuNird}}**</p>
+                <p>{{this.MotherBoard.explication}}</p>
+            </div>
+        }
+        @case (ComponentKey.PSU) {
+            <div class="info-text-box">
+                <h1>{{this.alim.nom}}</h1>
+                <p>Représente la **{{this.alim.enjeuNird}}**</p>
+                <p>{{this.alim.explication}}</p>
+            </div>
+        }
+        @case (ComponentKey.CPU) {
+            <div class="info-text-box">
+                <h1>{{this.CPU.nom}}</h1>
+                <p>Représente la **{{this.CPU.enjeuNird}}**</p>
+                <p>{{this.CPU.explication}}</p>
+            </div>
+        }
+        @case (ComponentKey.RAM) {
+            <div class="info-text-box">
+                <h1>{{this.RAM.nom}}</h1>
+                <p>Représente la **{{this.RAM.enjeuNird}}**</p>
+                <p>{{this.RAM.explication}}</p>
+            </div>
+        }
+        @case (ComponentKey.DISK) {
+            <div class="info-text-box">
+                <h1>{{this.Disk.nom}}</h1>
+                <p>Représente la **{{this.Disk.enjeuNird}}**</p>
+                <p>{{this.Disk.explication}}</p>
+            </div>
+        }
+        @case (ComponentKey.GPU) {
+            <div class="info-text-box">
+                <h1>{{this.GPU.nom}}</h1>
+                <p>Représente la **{{this.GPU.enjeuNird}}**</p>
+                <p>{{this.GPU.explication}}</p>
+            </div>
+        }
+        @default {
+            }
+    }
+}
+
+@else {
+    <app-quiz-component></app-quiz-component>
+}

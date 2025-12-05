@@ -1,0 +1,121 @@
+@if (!playBiosAnim()) {
+<div class="game-container" *ngIf="gameState"
+     [ngClass]="gameState.os === 'windows' ? 'theme-windows' : 'theme-linux'">
+
+  <div class="side-panel left-panel">
+    <h2>INSTALLATION</h2>
+    <div class="progress-vertical-container">
+        <div class="progress-track">
+            <div class="progress-fill"
+                 [style.height.%]="(installedAppsCount / totalAppsToInstall) * 100">
+            </div>
+        </div>
+        <div class="progress-text">
+            <span>{{ installedAppsCount }}</span>
+            <hr>
+            <span>{{ totalAppsToInstall }}</span>
+        </div>
+    </div>
+  </div>
+
+  <div class="center-area">
+      <div class="grid-wrapper">
+        <div class="grid-container">
+            <ng-container *ngFor="let row of grid; let r = index">
+                <div *ngFor="let cell of row; let c = index"
+                     class="grid-cell"
+                     (click)="placeBuilding(r, c)"
+                     [style.grid-column]="c + 1"
+                     [style.grid-row]="r + 1">
+                </div>
+            </ng-container>
+            <div *ngFor="let building of placedBuildings"
+                 class="placed-building"
+                 [ngClass]="'os-' + building.os"
+                 [style.grid-column-start]="building.left + 1"
+                 [style.grid-row-start]="building.top + 1"
+                 [style.grid-column-end]="'span ' + building.width"
+                 [style.grid-row-end]="'span ' + building.height">
+                 <img [src]="building.logo" class="placed-logo">
+            </div>
+        </div>
+      </div>
+
+      <div class="deck-container">
+        <div class="deck">
+          <div *ngFor="let building of availableBuildings"
+               class="card"
+               [class.selected]="selectedBuilding?.id === building.id"
+               [class.installed]="building.installed"
+               (click)="selectBuilding(building)">
+            <img [src]="building.logo">
+            <span class="name">{{ building.name }}</span>
+            <div class="check" *ngIf="building.installed">✓</div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="side-panel right-panel">
+      <h2>PC STATUS</h2>
+
+      <div class="stat-box">
+          <label>CPU Usage</label>
+          <div class="bar-frame">
+            <div class="bar-fill cpu" [style.width.%]="gameState.currentCpu"></div>
+          </div>
+          <span class="val">{{ gameState.currentCpu }}%</span>
+      </div>
+
+      <div class="stat-box">
+        <label>RAM Usage</label>
+        <div class="bar-frame">
+          <div class="bar-fill ram" [style.width.%]="(gameState.currentRam / gameState.maxRam) * 100"></div>
+        </div>
+        <span class="val">{{ gameState.currentRam }} MB</span>
+     </div>
+
+     <div class="stat-box">
+        <label>Storage</label>
+        <div class="bar-frame">
+          <div class="bar-fill hdd" [style.width.%]="(gameState.currentStorage / gameState.maxStorage) * 100"></div>
+        </div>
+        <span class="val">{{ gameState.currentStorage / 1000 | number:'1.0-0' }} GB</span>
+     </div>
+
+     <div class="console-log">
+         > {{ gameState.gameMessage }}
+     </div>
+  </div>
+
+  <div class="update-modal" *ngIf="showUpdateModal">
+    <div class="win-window">
+      <div class="win-header">Windows Update</div>
+      <div class="win-body">
+        <div class="spinner"></div>
+        <p>Configuration de la mise à jour...</p>
+        <p>N'éteignez pas l'ordinateur.</p>
+        <button (click)="closeUpdateModal()">OK (0% complété)</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bsod-screen" *ngIf="gameState.gameOver && gameState.os === 'windows'">
+    <h1>:(</h1>
+    <h2>Votre PC a rencontré un problème.</h2>
+    <p>Code d'erreur : {{ gameState.gameMessage }}</p>
+    <button (click)="startLinuxGame()">PASSER À LINUX (RECOMMANDÉ)</button>
+  </div>
+
+  <div class="win-screen" *ngIf="gameState.gameWon">
+      <h1>SUCCÈS !</h1>
+      <p>Toutes les applications sont installées.</p>
+      <p>Le système est resté stable, rapide et léger.</p>
+      <div class="penguin">🐧</div>
+      <button (click)="startWindowsGame()">RETENTER L'ENFER WINDOWS ?</button>
+  </div>
+
+</div>
+} @else {
+  <app-bios-anim (finished)="playBiosAnim.set(false)"></app-bios-anim>
+}

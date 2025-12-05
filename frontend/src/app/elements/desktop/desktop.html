@@ -1,0 +1,21 @@
+<div class="computer-frame">
+  <div
+    class="desktop-wrapper"
+    [class.linux]="userService.isGame3Finished()"
+    [class.windows]="!userService.isGame3Finished()"
+  >
+    <div
+      [class.linux-area]="userService.isGame1Finished()"
+      [class.desktop-area]="!userService.isGame1Finished()"
+    >
+      @for (app of apps; track app.id) {https://github.com/Byxis/NuitInfo25-26/pull/45/conflict?name=frontend%252Fsrc%252Fapp%252Felements%252Fdesktop%252Fdesktop.ts&ancestor_oid=bdda3702d8940c2cb719f0f943f71f5584682a5c&base_oid=501e85a6864c4c95cfe411db554528d53cc69a85&head_oid=384454ca7dbbdf4a1abe62d6bf99592296c9c3d8
+      <app-app-icon [app]="app" (open)="openApp($event)"></app-app-icon>
+      } @for (win of openWindows; track win.id) {
+      <app-window [component]="win.component" [title]="win.name" (close)="closeApp(win)">
+      </app-window>
+      }
+    </div>
+
+    <app-taskbar (openSnakeO)="openApp(this.snake)"></app-taskbar>
+  </div>
+</div>

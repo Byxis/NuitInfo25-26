@@ -1,14 +1,6 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, input, computed, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import {
-  MatCard,
-  MatCardContent,
-  MatCardHeader,
-  MatCardSubtitle,
-  MatCardTitle,
-  MatCardFooter,
-} from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
@@ -18,20 +10,8 @@ import { AuthService } from '@auth/auth.service';
 @Component({
   selector: 'login',
   imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatCardContent,
-    MatFormField,
-    MatLabel,
-    MatError,
     MatIcon,
-    MatCardContent,
-    MatInput,
-    MatButton,
     ReactiveFormsModule,
-    MatCardFooter,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -40,8 +20,24 @@ import { AuthService } from '@auth/auth.service';
 export class Login {
   private readonly svc = inject(AuthService);
   private readonly router = inject(Router);
+
+  readonly username = input<string>('');
+  readonly selected = input<string | null>(null);
+
+  readonly select = output<string>();
+  readonly clear = output<null>();
+
+  readonly isSelected = computed(() => {
+    return this.selected() === this.username();
+  });
+
   readonly isLoading = this.svc.isLoading;
   readonly error = this.svc.error;
+
+  onCancel(event: Event) {
+    event.stopPropagation(); // prevent selecting again
+    this.clear.emit(null);
+  }
 
   constructor() {
     effect(() => {
@@ -52,19 +48,19 @@ export class Login {
   }
 
   readonly form = new FormGroup({
-    login: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.minLength(5), Validators.required],
-    }),
     password: new FormControl('', {
       nonNullable: true,
       validators: [Validators.minLength(1), Validators.required],
     }),
   });
 
+  selectThisUser() {
+    this.select.emit(this.username());
+  }
+
   submit() {
     if (this.form.valid) {
-      var login: string = this.form.value.login ?? '';
+      var login: string = this.username();
       var password: string = this.form.value.password ?? '';
       if (login && password) {
         this.svc.login(login, password);

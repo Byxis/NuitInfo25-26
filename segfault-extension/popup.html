@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Segfault Unit Converter</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Convertisseur d'Unités</h1>
+            <p>By Segfault</p>
+
+            <!-- Feature 1: Manual Conversion -->
+            <div class="converter-section">
+                <h2>Conversion</h2>
+
+                <div class="type-selector">
+                    <label>Type de mesure:</label>
+                    <select id="measureType">
+                        <option value="length">Longueur</option>
+                        <option value="weight">Poids</option>
+                        <option value="temperature">Température</option>
+                        <option value="volume">Volume</option>
+                        <option value="area">Surface</option>
+                    </select>
+                </div>
+
+                <div class="conversion-inputs">
+                    <div class="input-group">
+                        <input type="number" id="value1" placeholder="0" />
+                        <select id="unit1"></select>
+                    </div>
+                    <div class="separator">=</div>
+                    <div class="input-group">
+                        <input type="number" id="value2" placeholder="0" />
+                        <select id="unit2"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Preferences and Auto-Scan -->
+            <div class="preferences-section">
+                <h2>Préférences</h2>
+
+                <div class="auto-scan">
+                    <label>
+                        <input type="checkbox" id="enableAutoScan" />
+                        Activer le scan automatique des pages
+                    </label>
+                </div>
+
+                <div class="preferred-units">
+                    <h3>Unités préférées</h3>
+
+                    <div class="show-all-toggle">
+                        <label>
+                            <input type="checkbox" id="showAllUnits" />
+                            Afficher la totalité des unités
+                        </label>
+                    </div>
+
+                    <div class="pref-item">
+                        <label>Longueur:</label>
+                        <select id="pref-length"></select>
+                    </div>
+
+                    <div class="pref-item">
+                        <label>Poids:</label>
+                        <select id="pref-weight"></select>
+                    </div>
+
+                    <div class="pref-item">
+                        <label>Température:</label>
+                        <select id="pref-temperature"></select>
+                    </div>
+
+                    <div class="pref-item">
+                        <label>Volume:</label>
+                        <select id="pref-volume"></select>
+                    </div>
+
+                    <div class="pref-item">
+                        <label>Surface:</label>
+                        <select id="pref-area"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>

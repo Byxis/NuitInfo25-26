@@ -1,0 +1,100 @@
+// ...existing code...
+
+
+
+.clippy-container {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+  z-index: 9999;
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #FFFFCC;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  max-width: 320px;
+  min-height: 60px;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: 20px; /* Ajusté pour pointer vers Clippy */
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid #FFFFCC;
+  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2));
+}
+
+.speech-bubble.animate {
+  animation: popup 0.3s ease-out;
+}
+
+@keyframes popup {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.message {
+  margin: 0;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.clippy-character {
+  width: 96px;
+  height: 144px;
+  margin-right: 10; /* Aligné à droite */
+  filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+
+
+.clippy-character.bounce {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.blink {
+  animation: blink 0.3s ease;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.blink {
+  animation: blink 0.3s ease;
+}
+
+@keyframes blink {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0; 
+  }
+}
+
+// ...existing code...

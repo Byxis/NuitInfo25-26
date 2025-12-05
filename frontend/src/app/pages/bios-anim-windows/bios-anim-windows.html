@@ -1,0 +1,36 @@
+<div class="screen">
+  <div class="scanlines"></div>
+
+  @if (phase() === 'bios') {
+    <div class="bios">
+      <p>Polytech IG/DO Megatrends, Inc 1996-2024</p>
+      <p>CPU: Intel(R) Core(TM) i7 Processor</p>
+      <p>Memory Test: 16384MB OK</p>
+      <p>USB Devices: 1 Keyboard, 1 Mouse</p>
+      <p>Press DEL to enter Setup</p>
+    </div>
+  }
+
+  @if (phase() === 'bootmgr') {
+    <div class="bootmgr">
+      <p>Windows Boot Manager</p>
+      <p>Loading Windows...</p>
+    </div>
+  }
+
+  @if (phase() === 'windows') {
+    <div class="bootlog">
+      @for (line of visibleBootLines(); track $index) {
+        <div class="line">{{ line }}</div>
+      }
+    </div>
+  }
+
+  @if (phase() === 'desktop') {
+    <div class="desktop">
+      <div class="windows-logo">Windows</div>
+      <p>Welcome</p>
+      <div class="spinner"></div>
+    </div>
+  }
+</div>
