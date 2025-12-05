@@ -1,103 +1,100 @@
-    .clippy-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9999;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+// ...existing code...
 
-    .speech-bubble {
-      position: relative;
-      background: #FFFFCC;
-      border: 2px solid #000;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 10px;
-      max-width: 320px;
-      min-height: 60px;
-      box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
-    }
 
-    .speech-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      right: 40px;
-      width: 0;
-      height: 0;
-      border-left: 15px solid transparent;
-      border-right: 15px solid transparent;
-      border-top: 20px solid #FFFFCC;
-      filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2));
-    }
 
-    .speech-bubble.animate {
-      animation: popup 0.3s ease-out;
-    }
+.clippy-container {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
-    @keyframes popup {
-      0% { transform: scale(0.8); opacity: 0; }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); opacity: 1; }
-    }
+.speech-bubble {
+  position: relative;
+  background: #FFFFCC;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  max-width: 320px;
+  min-height: 60px;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+}
 
-    .message {
-      margin: 0;
-      color: #000;
-      font-size: 14px;
-      line-height: 1.4;
-    }
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: 20px; /* Ajusté pour pointer vers Clippy */
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid #FFFFCC;
+  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2));
+}
 
-    .clippy-character {
-      width: 96px;
-      height: 144px;
-      margin: 0 auto 15px;
-      filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
-      image-rendering: pixelated;
-      image-rendering: -moz-crisp-edges;
-      image-rendering: crisp-edges;
-    }
+.speech-bubble.animate {
+  animation: popup 0.3s ease-out;
+}
 
-    .clippy-character svg {
-      image-rendering: pixelated;
-    }
+@keyframes popup {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
 
-    .clippy-character.bounce {
-      animation: bounce 0.5s ease;
-    }
+.message {
+  margin: 0;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.4;
+}
 
-    .blink {
-      animation: blink 0.3s ease;
-    }
+.clippy-character {
+  width: 96px;
+  height: 144px;
+  margin-right: 10; /* Aligné à droite */
+  filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      25% { transform: translateY(-15px); }
-      75% { transform: translateY(-5px); }
-    }
 
-    .next-btn {
-      width: 100%;
-      padding: 10px;
-      background: linear-gradient(180deg, #FFFFFF 0%, #D0D0D0 100%);
-      border: 2px solid #000;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 14px;
-      box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
-    }
+.clippy-character.bounce {
+  animation: bounce 0.5s ease;
+}
 
-    .next-btn:hover {
-      background: linear-gradient(180deg, #F0F0F0 0%, #C0C0C0 100%);
-    }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
-    .next-btn:active {
-      box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
-      transform: translateY(1px);
-    }
+.blink {
+  animation: blink 0.3s ease;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.blink {
+  animation: blink 0.3s ease;
+}
+
+@keyframes blink {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0; 
+  }
+}
+
+// ...existing code...
