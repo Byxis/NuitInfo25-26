@@ -1,4 +1,4 @@
-import { Component, signal, computed,  } from '@angular/core';
+import { Component, signal, computed, output } from '@angular/core';
 
 @Component({
   selector: 'app-bios-anim-windows',
@@ -8,6 +8,7 @@ import { Component, signal, computed,  } from '@angular/core';
 })
 export class BiosAnimWindows {
   readonly phase = signal<Phase>('bios');
+  finished = output<boolean>();
 
   // Fake Windows boot log lines
   private bootLines = [
@@ -59,6 +60,11 @@ export class BiosAnimWindows {
 
           this.finishTimeout = setTimeout(() => {
             this.phase.set('desktop');
+
+            setTimeout(() => {
+              this.finished.emit(true);
+            }, 5000);
+
           }, finalDelay);
         }
       }, delay);
