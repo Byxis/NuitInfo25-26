@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    color: white;
     .time {
         font-size: 14px;
         font-family: 'Press Start 2P';
@@ -22,5 +23,10 @@
         font-family: 'Press Start 2P';
     }
 
+}
+
+.img {
+    height: 16px;
+    margin-left: 16px;
 }
 

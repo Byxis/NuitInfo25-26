@@ -11,6 +11,8 @@
     background: #1a1a1a;
     border: 12px solid #333;
 
+    font-family: 'Press Start 2P', monospace;
+
 
     cursor: url('../../../../public/cursor.png') 0 0, auto;
 
@@ -18,7 +20,13 @@
     .desktop-area {
         flex: 1;
         overflow: hidden;
-        background: url('../../../../public/background.jpg') center/cover;
+        background: url('../../../../public/background-windows.jpg') center/cover;
+    }
+
+    .linux-area {
+        flex: 1;
+        overflow: hidden;
+        background: url('../../../../public/background-linux.jpg') center/cover;
     }
 }
 
